@@ -9,18 +9,48 @@
             display: flex;
             justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 30px;
+            font-size: 2rem;
             background-color: #DDDDDD;
-            top: 50%;
+        }
+
+        .container {
+            position: absolute;
+            top: 25%;
+            padding: 2rem;
+            margin: 0;
+            border: solid 0.1rem #444444;
+            border-radius: 1rem;
         }
 
         .input {
-            width: 3rem;
+            width: 8rem;
             height: 2rem;
+        }
+
+        button{
+            background-color: white;
+            height: 2rem;
+            width: 4rem;
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 3px 3px 1px 1px #898989;
+            transition: all 0.15s;
+        }
+
+        button:hover{
+            opacity: 0.5;
+        }
+
+        button:active{
+            opacity: 0.3;
+        }
+
+        .res * {
+            transition: all 0.15s;
         }
     </style>
 </head>
-<body>
+<body onload="start()">
     <div class="container">
         <div>Número 1
             <input type="text" name="numero1" class="input" id="num1">
@@ -32,22 +62,42 @@
         <button name="sum" onclick=suma()>Sumar</button>
         <button name="diff" onclick=resta()>Restar</button>
     
-        <div class="resultados">
-            <p>La suma es <span id="suma"></span></p>
-            <p>La resta es <span id="resta"></span></p>
+        <div class="res">
+            <p id="resultados_suma">La suma es <span id="suma"></span></p>
+            <p id="resultados_resta">La resta es <span id="resta"></span></p>
         </div>
     </div>
 
 <script type="text/javascript">
 
+    function start(){
+        document.getElementById("resultados_suma").style.display="none";
+        document.getElementById("resultados_resta").style.display="none";
+    }
+
+    function numbercheck(){
+        if ((document.getElementById("num1").value != Number(document.getElementById("num1").value)) || 
+        (document.getElementById("num2").value != Number(document.getElementById("num2").value))){
+            alert("Uno de los datos introducidos no es un número");
+            return false;
+        }
+        return true;
+    }
+
     function suma(){
-        sumar=Number(document.getElementById("num1").value) + Number(document.getElementById("num2").value);
-        document.getElementById("suma").innerHTML = sumar;
+        if (numbercheck()){
+            sumar=Number(document.getElementById("num1").value) + Number(document.getElementById("num2").value);
+            document.getElementById("suma").innerHTML = sumar;
+            document.getElementById("resultados_suma").style.display="block";
+        }
     }
 
     function resta(){
-        restar=document.getElementById("num1").value - document.getElementById("num2").value;
-        document.getElementById("resta").innerHTML = restar;
+        if (numbercheck()){
+            restar=document.getElementById("num1").value - document.getElementById("num2").value;
+            document.getElementById("resta").innerHTML = restar;
+            document.getElementById("resultados_resta").style.display="block";
+        }
     }
     
 </script>

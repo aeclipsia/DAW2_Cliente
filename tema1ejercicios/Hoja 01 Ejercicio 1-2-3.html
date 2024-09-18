@@ -1,57 +1,180 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<style type='text/css'>
-body{
-	font-family: 'Kite One', sans-serif;
-}
- 
-div {
-	border-style: solid;
-    border-width: 2px;
-	width:500px;
-	margin:auto;
-	padding: 20px;
-}
-.uno {
-		line-height: 30px;  
-	}
-</style>
- <script>
- function ejercicio1(){
- }
-  function ejercicio2(){
- }
-  function ejercicio3(){
- }
- </script>
+	<meta charset="UTF-8">
+	<style type='text/css'>
+		body {
+			font-family: 'Kite One', sans-serif;
+		}
 
+		div {
+			border-style: solid;
+			border-width: 2px;
+			width: 500px;
+			margin: auto;
+			padding: 20px;
+		}
+
+		.uno {
+			line-height: 30px;
+		}
+	</style>
+	<script>
+		function ejercicio1() {
+			alert("I am = I don't\nI do not = I don't");
+		}
+		function ejercicio2() {
+
+			let x = document.getElementById("n1").value;
+
+			y = Number(document.getElementById("n2").value);
+
+			if (x == parseInt(x)) {
+				alert("¡Muy bien");
+			}
+			else if (x == parseFloat(x)) {
+				alert("¡Casi! Teclea enteros por favor")
+			}
+			else {
+				alert("¡Así no! Sólo números")
+			}
+		}
+		function ejercicio3() {
+			a = document.getElementById("n2").value;
+			b = document.getElementById("n3").value;
+			op = document.getElementById("oper").value;
+
+			errores = false;
+
+			if (a==""||b==""||op=="") {
+				alert("No puede haber casillas vacías");
+				errores = true;
+			}
+			else if (a != Number(a)) {
+				alert("El primer número no es un número");
+				errores = true;
+			}
+			else if (b != Number(b)) {
+				alert("El segundo número no es un número");
+				errores = true;
+			}
+			else if (op != "+" || op != "-" || op != "*" || op != "/") {
+				alert("Las operaciones aceptadas son +, -, * y /")
+				errores = true;
+			}
+
+			if (!errores) {
+				switch (op) {
+					case "+":
+						x = Number(a) + Number(b);
+						document.getElementById("res").value = x;
+						break;
+
+					case "-":
+						x = Number(a) - Number(b);
+						document.getElementById("res").value = x;
+						break;
+
+					case "*":
+						x = Number(a) * Number(b);
+						document.getElementById("res").value = x;
+						break;
+
+					case "/":
+						x = Number(a) / Number(b);
+						document.getElementById("res").value = x;
+						break;
+
+					default:
+						break;
+				}
+			}
+		}
+		function ejercicio4() {
+			suma = 0;
+			
+			do {
+				input = prompt("Anota un número")
+				if (input==Number(input)) {
+					suma+=Number(input);
+				}
+			} while (input!="FIN");
+			alert(suma);
+		}
+		function ejercicio5() {
+
+			maxLength = 0;
+			maxTexto = "";
+
+			for (let index = 0; index < 5; index++) {
+				texto=prompt("Teclea cadena");
+				if (maxLength<texto.length) {
+					maxLength=texto.length;
+					maxTexto=texto;
+				}
+			}
+
+			alert("La cadena con más caracteres es: "+maxTexto+" con "+maxLength+" caracteres.");
+		}
+		function ejercicio6() {
+			nota=prompt("Anota tu nota");
+
+			if (nota<0||nota>10) {
+				alert("La nota debería ser entre 0 y 10");
+				
+			}
+			else {
+				if (nota<=4&&nota>=0){
+					alert("SUSPENSO");
+				}
+				if (nota<=6&&nota>=5){
+					alert("APROBADO");
+				}
+				if (nota<=8&&nota>=7){
+					alert("NOTABLE");
+				}
+				if (nota<=10&&nota>=9){
+					alert("SOBRESALIENTE");
+				}
+			}
+		}
+	</script>
 </head>
-<body>
-<form>
-<input type="reset" value="BORRAR">
-<div>
-<br> 
- <input type="button" class="uno"  value="Ejercicio 1" onclick="ejercicio1()"> 
- <br> <br>
- </div>
- <div>
-<br> Introduce un N&uacute;mero entero <input type="text" id="n1" size="10"></p>
- <input type="button" class="uno"  value="Ejercicio 2" onclick="ejercicio2()"> 
- <br> <br>
- </div>
- <div>
-Introduce dos n&uacute;meros
-<br>
-<p>N&uacute;mero 1 <input type="text" id="n2" size="8"></p>
-<p>N&uacute;mero 2 <input type="text" id="n3" size="8"></p>
-Introduce la operaci&oacute;n a ejecutar
-<input type="text" id="oper" size="3"></p>
-<p>Resultado <input type="text" id="res" size="8" readonly="readonly"></p>
- <input type="button" class="uno"  value="Ejercicio 3" onclick="ejercicio3()"> 
 
-</div>
- 
-</form>
-</body></html>
+<body>
+	<form>
+		<input type="reset" value="BORRAR">
+		<div>
+			<br>
+			<input type="button" class="uno" value="Ejercicio 1" onclick="ejercicio1()">
+			<br> <br>
+		</div>
+		<div>
+			<br> Introduce un N&uacute;mero entero <input type="text" id="n1" size="10"></p>
+			<input type="button" class="uno" value="Ejercicio 2" onclick="ejercicio2()">
+			<br> <br>
+		</div>
+		<div>
+			Introduce dos n&uacute;meros
+			<br>
+			<p>N&uacute;mero 1 <input type="text" id="n2" size="8"></p>
+			<p>N&uacute;mero 2 <input type="text" id="n3" size="8"></p>
+			Introduce la operaci&oacute;n a ejecutar
+			<input type="text" id="oper" size="3"></p>
+			<p>Resultado <input type="text" id="res" size="8" readonly="readonly"></p>
+			<input type="button" class="uno" value="Ejercicio 3" onclick="ejercicio3()">
+		</div>
+		<div>
+			<input type="button" value="Ejercicio 4" onclick="ejercicio4()">
+		</div>
+		<div>
+			<input type="button" value="Ejercicio 5" onclick="ejercicio5()">
+		</div>
+		<div>
+			<input type="button" value="Ejercicio 6" onclick="ejercicio6()">
+		</div>
+	</form>
+</body>
+
+</html>
