@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="ejercicio1()">Ejercicio 1</button><br>
+    <input type="date" id="fechaIn">
+    <button onclick="ejercicio2()">Ejercicio 2</button><br>
+    <input type="date" id="fechaInput">
+    <button onclick="ejercicio3()">Ejercicio 3</button><br>
+    <input type="text" onclick="startTime()">
+    <button onclick="ejercicio4()">Ejercicio 4</button><br>
+    <input type="text" id="dPlus">
+    <button onclick="ejercicio5()">Ejercicio 5</button><br>
+
+    <script>
+        dias = ["domingo","lunes","martes","miercoles","jueves","viernes","sabado"];
+
+        let timeStart;
+
+        function ejercicio1() {
+            d = prompt("Apunta el día de tu cumpleaños");
+            m = prompt("Apunta el mes de tu cumpleaños");
+
+            cumple = new Date(2024, m - 1, d);
+
+            alert("Su cumple en 2024 cae en "+dias[cumple.getDay()]);
+
+        }
+
+        function ejercicio2() {
+            cadena = document.getElementById("fechaIn").value;
+            arrayCadena = cadena.split("-");
+            fechaTarget = new Date(arrayCadena[0],arrayCadena[1]-1,arrayCadena[2]);
+            fechaNow = new Date();
+
+            diff = fechaNow - fechaTarget;
+            alert("Pasó "+Math.floor(diff/86400000)+" días");
+        }
+
+        function ejercicio3(){
+            cadenaCumple = document.getElementById("fechaInput").value;
+            arrayCadenaCumple = cadenaCumple.split("-");
+            
+            fechaCumple = new Date(arrayCadenaCumple[0],arrayCadenaCumple[1]-1,arrayCadenaCumple[2]);
+
+            alert("Su cumple fue un "+dias[fechaCumple.getDay()]);
+        }
+
+        function startTime(){
+            timeStart = new Date();
+        }
+
+        function ejercicio4(){
+            timeEnd = new Date();
+
+            diff = timeEnd - timeStart;
+            alert ("Tardaste "+ Math.floor(diff/1000) +" segundos en escribir tu nombre");
+
+            timeStart = new Date(); //resetea
+        }
+
+        function ejercicio5(){
+            incrementar = Number(document.getElementById("dPlus").value);
+            fecha = new Date();
+
+            fecha.setDate(fecha.getDate()+incrementar);
+            alert(fecha.toDateString());
+        }
+    </script>
+</body>
+</html>
