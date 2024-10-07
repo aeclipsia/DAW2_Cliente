@@ -49,7 +49,11 @@
             
             fechaCumple = new Date(arrayCadenaCumple[0],arrayCadenaCumple[1]-1,arrayCadenaCumple[2]);
 
-            alert("Su cumple fue un "+dias[fechaCumple.getDay()]);
+            fechaHoy = new Date();
+
+            diff = fechaHoy - fechaCumple;
+
+            alert("Su cumple fue un "+dias[fechaCumple.getDay()]+" y tienes "+Math.floor(diff/31536000000)+" años.");
         }
 
         function startTime(){

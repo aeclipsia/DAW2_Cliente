@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Hamburguesas Pepe</h1>
+    <div class="container">
+        <form name="formulario">
+            <div class="size">
+                <button class="size_label">Tamaño</button>
+                <select id="idtamaño">
+                    <option value="0"> Selecciona </option>
+                    <option value="2"> Pequeña </option>
+                    <option value="3"> Mediana </option>
+                    <option value="4"> Grande </option>
+                    <option value="5"> Gigante!! </option>
+                </select>
+            </div>
+            <div class="add">
+                Patatas? <input type="checkbox" id="idpatatas">
+                Refresco? <input type="checkbox" id="idrefresco">
+            </div>
+            <div class="amount">
+                Cuantas?
+                <input type="radio" name="cuantas" value="1"> 1 
+                <input type="radio" name="cuantas" value="2"> 2 
+                <input type="radio" name="cuantas" value="3"> 3 
+                <input type="radio" name="cuantas" value="4"> 4 
+                <input type="radio" name="cuantas" value="5"> 5
+            </div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, pariatur maiores facere corrupti debitis recusandae modi. Laboriosam illum nam porro, repudiandae veniam corporis doloremque. Minus ipsa dignissimos eum sapiente placeat!
+            <button class="submit" onclick="calcular()">Calcular</button>
+            <button class="label">Total</button>
+            <input type="text" id="idtotal" size="10" readonly>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
