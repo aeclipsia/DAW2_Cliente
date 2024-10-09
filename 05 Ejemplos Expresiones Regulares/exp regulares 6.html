@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        function validarPass(campo) {
+            var RegEx = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/;
+            if (document.form.pass.value.match(RegEx)) {
+                alert('Password Correcta');
+            } else {
+                alert('Password Incorrecta');
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name="form">
+        <p><input type="text" name="pass">
+            <input name="button" type="button" value="Probar" onclick="validarPass();">
+            <br> Entre 8 y 10 caracteres alfanuméricos, por lo menos un digito y una letra, y no puede contener caracteres especiales
+    </form>
+</body>
+
+</html>

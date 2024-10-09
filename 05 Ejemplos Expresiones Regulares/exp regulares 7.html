@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        let que = prompt("Qué quieres buscar?");
+        let donde = prompt("Dónde lo quieres buscar?");
+        let re = new RegExp(que,"gi");
+        alert(re.test(donde));
+        alert(donde.match(re));
+
+        prueba = 'abc';
+        re = new RegExp('(' + prueba + '[01]){2}');
+        alert(re);
+        alert(re.test('abc0abc1')); // true
+        alert(re.test('abc0****abc1')); // false
+        alert(re.test('***abc0abc1abc0***')); // true
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
