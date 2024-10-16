@@ -1,0 +1,8 @@
+a. /^\s+$/ = empieza con un espacio en blanco (1 o más veces)
+b. /^\d{8}[A-Z]$/ = empieza con 8 dígitos y acaba con una letras mayúsculas (formato DNI)
+c. /^\d{10}[A-Z]{2}$/ = empieza con 10 dígitos y acaba con dos letras mayúsculas
+d. /^\d{9}$/ = 9 dígitos (teléfono)
+e. /^\d{3}-\d{3}-\d{3}$/ = formato teléfono separado por guiones cada 3 números
+f. /^\d{3}\s\d{2}\s\d{2}\s\d{2}$/ = nnn nn nn nn
+g. /^\+\d{2,3}\s\d{9}$/ = empieza con '+' después números que aparecerán entre 2 o 3 veces, un espacio en blanco y 9 números: +nn nnnnnnnnn o +nnn nnnnnnnnn
+formato teléfono internacional

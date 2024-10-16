@@ -1,0 +1,22 @@
+a. Es un número binario.
+/^1[0,1]*$/
+b. Es un teléfono móvil
+/^\d{9}$/
+c. Es un teléfono 901, 902 o 903
+/^90[1-3]{1}\d{6}$/
+d. Es daw1, daw2, asir1, asir2, fin1 o fin2 en mayúsculas o minúsculas
+/^(daw|asir|fin)[1,2]$/i
+e. Es una cantidad de dinero que tiene dos decimales (, decimal) y acaba en $ o €
+/^\d+.\d{2}(\$|\€)$/
+f. Es una página web que comienza con www., acaba con .com o .org o .es y contiene en su nombre “poker”, “porno” o “juego”
+/^(www\.).*(juego|porno|poker).*(\.com|\.org|\.es)$/
+g. Es una hora que contiene hh:mm:ss (por ej 12:44:21)
+/^[01]\d|2[0-3](\:[0-5]\d){2}$/
+h. Es una fecha dd/mm/aaaa
+/^[0-3]\d\/[0,1]\d\/\d{4}$/
+i. Contraseña de exactamente 6 dígitos
+/\w{6}/
+j. Contraseña de 6 caracteres con solo dígitos o letras minúsculas
+/(\d|[a-z]){6}/
+k. Contraseña de entre 6 y 8 caracteres entre los que hay al menos una letra minúscula y un dígito
+/(\w*([a-z]|\d)+\w*){6,8}/
