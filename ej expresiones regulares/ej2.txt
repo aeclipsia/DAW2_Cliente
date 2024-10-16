@@ -1,5 +1,5 @@
 a. Es un número binario.
-/^1[0,1]*$/
+/^1*[0,1]*$/
 b. Es un teléfono móvil
 /^\d{9}$/
 c. Es un teléfono 901, 902 o 903
