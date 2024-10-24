@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EXAMEN EJERCICIO 1</title>
+
+    <link rel="stylesheet" type="text/css" href="stylepoli.css">
+    <style type="text/css">
+        body {
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            color: #210B61;
+            font-size: 10pt;
+        }
+
+        div {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #central,
+        #abajo {
+            text-align: center;
+        }
+
+        #pos1 {
+            position: relative;
+            background-color: #F5DA81;
+        }
+
+        table {
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        td {
+            font-size: 12px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <h1>POLIDEPORTIVO LEGANES SPORT</h1>
+    <div id="central">
+        <fieldset id="pos1">
+            Calculamos el precio mensual de tu carnet como socio en nuestro polideportivo.
+            Indica tu fecha de nacimiento y el uso que harías de él.
+        </fieldset>
+    </div>
+    <br>
+    <div id="abajo">
+        <form name="form1">
+            <label>Fecha nacimiento</label>
+            <input type="text" id="dd" placeholder="dd" style='text-align:center;' size=3>
+            <input type="text" id="mm" placeholder="mm" style='text-align:center;' size=3>
+            <input type="text" id="aaaa" placeholder="aaaa" style='text-align:center;' size=5>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp EDAD <input type="text" id="edad" size=3 readonly>
+
+            <label>Empadronado en Leganés </label>
+            <input type="radio">SÍ
+            <input type="radio">NO
+            <label>Familia numerosa </label>
+            <input type="radio">SÍ
+            <input type="radio">NO
+            <br>
+            <label>TARIFAS:Clica la que te interesa</label>
+            <table>
+                <tr>
+                    <td>1 hora semanal de L a V <b>20€</b></td>
+                    <td>2 horas semanales de L a V <b>30€</b></td>
+                    <td>4 horas semanales de L a V <b>40€</b></td>
+                    <td>Fines de Semana <b>30€</b></td>
+                    <td>Entrada libre todos los días <b>60€</b></td>
+                </tr>
+            </table>
+            <hr>
+            <label>Descuentos:</label>
+            Menores de 18 años: 20%
+            <br>Mayores de 65 años: 30%
+            <br>Familia numerosa: 5€
+            <br>Empadronado en Leganés: 50% (este descuento anula los anteriores)
+            <br><br> <input type="button" value="CALCULAR PRECIO">
+            <input type="text" id="precio" size=2 readonly>
+        </form>
+    </div>
+    <div id="id33" style="display:none">
+        <form name="form2">
+            <label>Teléfono</label>
+            <input type="text" id="telefono" size=20>
+            <br>No soy una máquina (Teclea un texto de entre 6 y 8 caracteres con al menos 2 números seguidos y el resto
+            letras de la A a la M)
+            <input type="text" id="val1" size=20>
+            <br>Vale, el anterior no me sale, pero no soy una máquina (Teclea una secuencia de letra.número al menos 2
+            veces L.9L.9 )
+            <input type="text" id="val2" size=20>
+            <br> <input type="button" value="ENVIAR DATOS">
+        </form>
+    </div>
+</body>
+
+</html>

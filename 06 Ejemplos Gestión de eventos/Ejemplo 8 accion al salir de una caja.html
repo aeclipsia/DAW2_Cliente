@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script>
+var mensaje='';
+ 
+function validar(e){
+ 
+if (isNaN(e.value)){
+	alert ("No numérico");
+ 	e.style.backgroundColor="#F5B7B1";
+	}
+else
+	e.style.backgroundColor="#E8DAEF ";
+}
+function digito (evento,e){
+if (evento.keyCode == 13)
+     validar(e);
+else{
+	let x = String.fromCharCode(evento.charCode);
+	if (x < '0' || x > '9'){
+		alert("error");
+		}
+	}
+}
+</script>
+</head>
+<body>
+<h2> Teclea tres números </h2>
+uno <input type="text" id="caja1" 
+            onkeypress="if (event.keyCode==13) validar(this);"> 
+dos <input type="text" id="caja2" onkeypress="digito(event,this)" > 
+tres <input type="text" id="caja3" onblur="validar(this)">
+ 
+</body>
+</html>

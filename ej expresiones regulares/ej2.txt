@@ -1,5 +1,5 @@
 a. Es un número binario.
-/^1*[0,1]*$/
+/^((1[01]*)|(0))$/
 b. Es un teléfono móvil
 /^\d{9}$/
 c. Es un teléfono 901, 902 o 903
@@ -13,10 +13,11 @@ f. Es una página web que comienza con www., acaba con .com o .org o .es y conti
 g. Es una hora que contiene hh:mm:ss (por ej 12:44:21)
 /^[01]\d|2[0-3](\:[0-5]\d){2}$/
 h. Es una fecha dd/mm/aaaa
-/^[0-3]\d\/[0,1]\d\/\d{4}$/
+/^(0[1-9]$/
 i. Contraseña de exactamente 6 dígitos
 /\w{6}/
 j. Contraseña de 6 caracteres con solo dígitos o letras minúsculas
 /(\d|[a-z]){6}/
 k. Contraseña de entre 6 y 8 caracteres entre los que hay al menos una letra minúscula y un dígito
 /(\w*([a-z]|\d)+\w*){6,8}/
+/^(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6}$/
