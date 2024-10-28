@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CONTROL FORMULARIOS</title>
+    <link rel="stylesheet" href="main.css" />
 
- <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CONTROL FORMULARIOS</title>
-        <link rel="stylesheet" href="main.css">
-   
-<script>
+    <script>
+      function alerta() {
+        return confirm("ESTAS ENTRANDO A UN SITIO DE LUDOPATÍA");
+      }
 
-</script>
-</head>
-<body>
-<a href="https://www.yobingo.es/">Juguemos al Bingo</a>
-<img src="garfield.jpg" width="300" height="300"> <input type="button" value="PULSAME">
-</body>
+      function changeImageBW(x) {
+        x.src = "garfield2.jpg";
+      }
+
+      function changeImage(x) {
+        x.src = "garfield.jpg";
+      }
+
+      function changeBtnOrange(x) {
+        x.style.backgroundColor = "orange";
+      }
+
+      function changeBtnGray(x) {
+        x.style.backgroundColor = "gray";
+      }
+
+      function disappear(x) {
+        x.style.display = "none";
+      }
+    </script>
+  </head>
+  <body>
+    <a href="https://www.yobingo.es/" onclick="return alerta()">
+      Juguemos al Bingo
+    </a>
+    <img
+      src="garfield.jpg"
+      width="300"
+      height="300"
+      onmouseenter="changeImageBW(this)"
+      onmouseleave="changeImage(this)"
+    />
+    <input
+      type="button"
+      value="PULSAME"
+      onmouseenter="changeBtnOrange(this)"
+      onmouseleave="changeBtnGray(this)"
+      onclick="disappear(this)"
+    />
+  </body>
 </html>
