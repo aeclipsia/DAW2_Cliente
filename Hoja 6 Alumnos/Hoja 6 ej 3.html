@@ -9,7 +9,40 @@
     <script>
       function changeTextSize(x) {
         size = x.value;
-        document.getElementById("texto").style.fontSize = size;
+        document.getElementById("texto").style.fontSize = size + "px";
+      }
+
+      function changeFontFamily(x) {
+        font_family = x.value;
+        document.getElementById("texto").style.fontFamily = font_family;
+      }
+
+      function changeTextColor(x) {
+        text_color = x.value;
+        document.getElementById("texto").style.color = text_color;
+      }
+
+      function toggleBold(x) {
+        document.getElementById("texto").style.fontWeight = x.checked
+          ? "bold"
+          : "normal";
+      }
+
+      function toggleItalics(x) {
+        document.getElementById("texto").style.fontStyle = x.checked
+          ? "italic"
+          : "normal";
+      }
+
+      function toggleUnderline(x) {
+        document.getElementById("texto").style.textDecoration = x.checked
+          ? "underline"
+          : "none";
+      }
+
+      function changeAlignment(x) {
+        alignment_value = x.value;
+        document.getElementById("texto").style.textAlign = alignment_value;
       }
     </script>
   </head>
@@ -26,7 +59,7 @@
       </select>
 
       Tipo de texto
-      <select id="tipo">
+      <select id="tipo" onchange="changeFontFamily(this)">
         <option value="arial">arial</option>
         <option value="verdana">verdana</option>
         <option value="geneva">geneva</option>
@@ -34,7 +67,7 @@
       </select>
 
       Color del texto
-      <select id="color">
+      <select id="color" onchange="changeTextColor(this)">
         <option value="#000000">negro</option>
         <option value="#CCCCCC">gris</option>
         <option value="#6699FF">azul</option>
@@ -43,18 +76,39 @@
     <br />
     <div id="controles2">
       Negrita&nbsp;
-      <input type="checkbox" id="negrita" />&nbsp;&nbsp;&nbsp;&nbsp;
-      Cursiva&nbsp;
-      <input
-        type="checkbox"
-        id="cursiva"
-      />&nbsp;&nbsp;&nbsp;&nbsp;Subrayado&nbsp;
-      <input type="checkbox" id="subrayado" />
+      <input type="checkbox" id="negrita" onchange="toggleBold(this)" />
+      &nbsp;&nbsp;&nbsp;&nbsp; Cursiva&nbsp;
+      <input type="checkbox" id="cursiva" onchange="toggleItalics(this)" />
+      &nbsp;&nbsp;&nbsp;&nbsp;Subrayado&nbsp;
+      <input type="checkbox" id="subrayado" onchange="toggleUnderline(this)" />
       &nbsp;&nbsp;&nbsp;&nbsp;Alineación&nbsp;
-      <input name="a" type="radio" value="left" />&nbsp;Izq&nbsp;
-      <input name="a" type="radio" value="right" />&nbsp;Der&nbsp;
-      <input name="a" type="radio" value="center" />&nbsp;Cen&nbsp;
-      <input name="a" type="radio" value="justify" />
+      <input
+        name="a"
+        type="radio"
+        value="left"
+        onchange="changeAlignment(this)"
+      />
+      &nbsp;Izq&nbsp;
+      <input
+        name="a"
+        type="radio"
+        value="right"
+        onchange="changeAlignment(this)"
+      />
+      &nbsp;Der&nbsp;
+      <input
+        name="a"
+        type="radio"
+        value="center"
+        onchange="changeAlignment(this)"
+      />
+      &nbsp;Cen&nbsp;
+      <input
+        name="a"
+        type="radio"
+        value="justify"
+        onchange="changeAlignment(this)"
+      />
       &nbsp;Jus&nbsp;
     </div>
     <div id="texto">

@@ -1,48 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación de Contraseña</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Contraseña</title>
     <style>
-        .error {
-            color: red;
-        }
-        .success {
-            color: green;
-        }
-        .indicador {
-            display:inline-block;
-            width: 100px;
-            height: 30px;
-            margin-top: 15px;
-            border: 2px solid #ccc;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-        .valid {
-            background-color: rgb(195, 214, 195);
-        }
-        .invalid {
-            background-color: rgb(242, 183, 183);
-        }
-    </style>
-</head>
-<body>
-    <h2>Crear Contraseña</h2>
-    <input type="password" id="password" placeholder="Introduce tu contraseña">
-    <button id="button">Enviar</button>
-    <p id="message">La contraseña debe tener al menos 8 caracteres, incluyendo dígitos, letras minúsculas, mayúsculas y caracteres especiales.</p>
+      body {
+        background-color: #121212; /* Dark background */
+        color: #ffffff; /* Light text color */
+        margin: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
 
-    <div>
-        <span id="digit" class="indicador">Dígito  </span>
-        <span id="lower" class="indicador">Minúscula  </span>
-        <span id="upper" class="indicador">Mayúscula </span>
-        <span id="special" class="indicador">Especial </span>
+      .container {
+        max-width: 400px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        background-color: #1e1e1e; /* Darker container background */
+        text-align: left;
+      }
+
+      h2 {
+        margin: 0 0 1.5rem;
+        color: #e0e0e0; /* Light grey color for headings */
+        font-size: 1.5rem;
+      }
+
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .password-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #444; /* Darker border */
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: #333; /* Dark input background */
+        color: #ffffff; /* Light text color for input */
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+      }
+
+      .password-input:focus {
+        outline: none;
+        border-color: #4a90e2; /* Blue border on focus */
+      }
+
+      .requirements {
+        display: grid;
+        gap: 0.5rem;
+        margin: 1rem 0 1.5rem;
+      }
+
+      .requirement {
+        display: flex;
+        align-items: center;
+        color: #b0b0b0; /* Light grey for requirements text */
+        font-size: 0.9rem;
+        padding: 0.25rem 0;
+      }
+
+      .requirement::before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        border-radius: 50%;
+        background-color: #444; /* Dark background for requirement status */
+        flex-shrink: 0;
+        transition: background-color 0.2s;
+      }
+
+      .requirement.valid::before {
+        background-color: #4caf50; /* Green for valid requirements */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+        background-size: 12px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #4a90e2; /* Blue background */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .submit-btn:hover {
+        background-color: #357abd; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Crear contraseña</h2>
+
+      <div class="input-group">
+        <input
+          type="password"
+          id="password"
+          class="password-input"
+          placeholder="Contraseña"
+        />
+      </div>
+
+      <div class="requirements">
+        <div class="requirement" id="lengthReq">Al menos 8 caracteres</div>
+        <div class="requirement" id="digitReq">Contiene un número</div>
+        <div class="requirement" id="lowerReq">
+          Contiene una letra minúscula
+        </div>
+        <div class="requirement" id="upperReq">
+          Contiene una letra mayúscula
+        </div>
+        <div class="requirement" id="specialReq">
+          Contiene un caracter especial
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Crear contraseña</button>
     </div>
 
     <script>
-   
+      var password = document.getElementById("password");
+      var submitButton = document.getElementsByClassName("submit-btn")[0];
+
+      function validatePassword() {
+        var value = password.value;
+
+        // Validaciones individuales
+        var lengthValid = value.length >= 8;
+        var digitValid = /[0-9]/.test(value);
+        var lowerValid = /[a-z]/.test(value);
+        var upperValid = /[A-Z]/.test(value);
+        var specialValid = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+        // Actualizar cada requisito visualmente
+        var lengthReq = document.getElementById("lengthReq");
+        var digitReq = document.getElementById("digitReq");
+        var lowerReq = document.getElementById("lowerReq");
+        var upperReq = document.getElementById("upperReq");
+        var specialReq = document.getElementById("specialReq");
+
+        if (lengthValid) {
+          lengthReq.className = "requirement valid";
+        } else {
+          lengthReq.className = "requirement";
+        }
+
+        if (digitValid) {
+          digitReq.className = "requirement valid";
+        } else {
+          digitReq.className = "requirement";
+        }
+
+        if (lowerValid) {
+          lowerReq.className = "requirement valid";
+        } else {
+          lowerReq.className = "requirement";
+        }
+
+        if (upperValid) {
+          upperReq.className = "requirement valid";
+        } else {
+          upperReq.className = "requirement";
+        }
+
+        if (specialValid) {
+          specialReq.className = "requirement valid";
+        } else {
+          specialReq.className = "requirement";
+        }
+
+        // Retornar si todos los requisitos son válidos
+        return (
+          lengthValid && digitValid && lowerValid && upperValid && specialValid
+        );
+      }
+
+      password.addEventListener("input", validatePassword);
+
+      submitButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (validatePassword()) {
+          alert("Enviada correctamente");
+        } else {
+          alert("Por favor, completa los requisitos de la contraseña");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

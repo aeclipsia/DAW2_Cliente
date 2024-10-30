@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABECEDARIO</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      #display {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        padding: 10px;
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+        font-size: 0;
+        background-color: #f9f9f9;
+        overflow-y: auto;
+      }
+      .letter-image {
+        width: 100px;
+        height: 100px;
+      }
+      .space {
+        width: 40px;
+        height: 100px;
+      }
+      .newline {
+        flex-basis: 100%;
+        height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="display"></div>
+
+    <script>
+      document.addEventListener("keydown", (event) => {
+        const display = document.getElementById("display");
+        const key = event.key;
+
+        if (key === "Backspace" || key === "Enter") {
+          event.preventDefault();
+        }
+
+        if (key === "Backspace") {
+          if (display.lastChild) {
+            display.removeChild(display.lastChild);
+          }
+          return;
+        }
+
+        if (key === "Enter") {
+          const newline = document.createElement("div");
+          newline.classList.add("newline");
+          display.appendChild(newline);
+          return;
+        }
+
+        if (key.length === 1 && key.match(/[a-zA-Z]/)) {
+          const img = document.createElement("img");
+          img.src = `abecedario/${key.toLowerCase()}.png`;
+          img.alt = key;
+          img.classList.add("letter-image");
+          display.appendChild(img);
+        } else if (key === " ") {
+          const space = document.createElement("div");
+          space.classList.add("space");
+          display.appendChild(space);
+        }
+      });
+    </script>
+  </body>
+</html>
