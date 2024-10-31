@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Kite+One|Cherry+Swash' rel='stylesheet' type='text/css'>
+		<style type='text/css'>
+		
+		body{
+			font-family: 'Kite One', sans-serif;
+		}
+		
+		#div1 {
+			width:250px;
+			margin:auto;
+		}
+		
+		h1{
+			text-align:center;
+			font-size:20pt;
+		}
+		
+		table{
+			background-color: #EFF2FB;
+			text-align:center;
+			width:250px;
+			border: 1px solid #D0A9F5;
+			font-family: 'Cherry Swash', cursive;
+		}
+		
+		#dias{
+			background-color: #D0A9F5;
+		}
+		
+		td{
+			border: 1px solid #D0A9F5;
+		}
+
+		</style>
+
+
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div>
+<h3>PROBANDO ARRAYS BIDIMENSIONALES</h3>
+<br>
+<form name="formulario">
+SELECCIONA: Filas <select id="id1" onchange="cargar()">
+		<option value="2" selected> 2 </option>
+		<option value="3"> 3 </option>
+		<option value="4"> 4 </option>
+		<option value="5"> 5 </option>
+		<option value="6"> 6 </option>
+		</select>
+		Columnas <select id="id2" onchange="cargar()">
+		<option value="2" selected> 2 </option>
+		<option value="3"> 3 </option>
+		<option value="4"> 4 </option>
+		<option value="5"> 5 </option>
+		<option value="6"> 6 </option>
+		</select>
+<br>
+<br>
+RELLENAR CON: 
+<input type="radio" name="eleccion" value="1" checked onchange="cargar()"> De uno en uno
+<input type="radio" name="eleccion" value="2" onchange="cargar()"> Pares
+<input type="radio" name="eleccion" value="3" onchange="cargar()"> Impares
+<input type="radio" name="eleccion" value="4" onchange="cargar()"> Multiplos de 
+	<select id="id3" onchange="cargar()">
+		<option value="3" selected> 3 </option>
+		<option value="4"> 4 </option>
+		<option value="5"> 5 </option>
+		<option value="6"> 6 </option>
+		<option value="7"> 7 </option>
+		<option value="8"> 8 </option>
+		<option value="9"> 9 </option>
+		<option value="10"> 10 </option>
+		</select>
+<br>
+<br>
+</form>
+</div>
+<div id="div1">
+</div>
+</body>
+</html>

@@ -6,8 +6,8 @@
     <title>Crear Contraseña</title>
     <style>
       body {
-        background-color: #121212; /* Dark background */
-        color: #ffffff; /* Light text color */
+        background-color: #121212;
+        color: #ffffff;
         margin: 0;
         font-family: system-ui, -apple-system, sans-serif;
       }
@@ -18,13 +18,13 @@
         padding: 2rem;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        background-color: #1e1e1e; /* Darker container background */
+        background-color: #1e1e1e;
         text-align: left;
       }
 
       h2 {
         margin: 0 0 1.5rem;
-        color: #e0e0e0; /* Light grey color for headings */
+        color: #e0e0e0;
         font-size: 1.5rem;
       }
 
@@ -35,18 +35,18 @@
       .password-input {
         width: 100%;
         padding: 0.75rem;
-        border: 2px solid #444; /* Darker border */
+        border: 2px solid #444;
         border-radius: 4px;
         font-size: 1rem;
-        background-color: #333; /* Dark input background */
-        color: #ffffff; /* Light text color for input */
+        background-color: #333;
+        color: #ffffff;
         transition: border-color 0.2s;
         box-sizing: border-box;
       }
 
       .password-input:focus {
         outline: none;
-        border-color: #4a90e2; /* Blue border on focus */
+        border-color: #4a90e2;
       }
 
       .requirements {
@@ -58,7 +58,7 @@
       .requirement {
         display: flex;
         align-items: center;
-        color: #b0b0b0; /* Light grey for requirements text */
+        color: #b0b0b0;
         font-size: 0.9rem;
         padding: 0.25rem 0;
       }
@@ -70,13 +70,13 @@
         height: 16px;
         margin-right: 8px;
         border-radius: 50%;
-        background-color: #444; /* Dark background for requirement status */
+        background-color: #444;
         flex-shrink: 0;
         transition: background-color 0.2s;
       }
 
       .requirement.valid::before {
-        background-color: #4caf50; /* Green for valid requirements */
+        background-color: #4caf50;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
         background-size: 12px;
         background-position: center;
@@ -86,7 +86,7 @@
       .submit-btn {
         width: 100%;
         padding: 0.75rem;
-        background-color: #4a90e2; /* Blue background */
+        background-color: #4a90e2;
         color: white;
         border: none;
         border-radius: 4px;
@@ -96,7 +96,7 @@
       }
 
       .submit-btn:hover {
-        background-color: #357abd; /* Darker blue on hover */
+        background-color: #357abd;
       }
     </style>
   </head>
@@ -137,7 +137,6 @@
       function validatePassword() {
         var value = password.value;
 
-        // Validaciones individuales
         var lengthValid = value.length >= 8;
         var digitValid = /[0-9]/.test(value);
         var lowerValid = /[a-z]/.test(value);
