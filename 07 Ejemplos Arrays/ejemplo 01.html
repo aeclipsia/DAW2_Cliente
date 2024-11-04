@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<script type="text/javascript">
+	const vocales = ['a','e','i','o','u'];
+	document.write ('<br> VOCALES');
+	for (i=0;i<7;i++)
+		document.write ('<br>'+i+' '+vocales[i]);
+	//
+	const letras = [];
+	 letras[2]='c';
+	 letras[4]='e';
+	document.write ('<br><br> LETRAS');
+	for (i=0;i<=5;i++)
+		 document.write('<br>'+i+' '+letras[i]);
+	document.write('<br>Longitud del array '+letras.length+'<br>');
+	 
+	letras.length=0;
+	for (i=0;i<5;i++)
+		 document.write('<br>'+i+' '+letras[i]);
+</script>
+<body>
+</body>
+</html>

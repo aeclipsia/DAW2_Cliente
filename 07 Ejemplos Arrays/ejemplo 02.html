@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div id="demo"></div>
+    <div id="demo2"></div>
+</body>
+<script type="text/javascript">
+    const vocales = ['a','e','i','o','u'];
+    let texto= '';
+    vocales.forEach (print);
+    document.getElementById('demo').innerHTML = texto;
+    function print (value, index, array){
+        texto+=value + '<br>'
+    }
+    texto= '<ul>';
+    vocales.forEach (printList);
+    texto+='</ul>';
+    document.getElementById('demo2').innerHTML = texto;
+    function printList (value, index, array){
+        texto+='<li>'+ value + '</li>'
+    }
+    </script>
+</html>

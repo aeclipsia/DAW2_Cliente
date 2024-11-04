@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styletabla.css">
+<script type="text/javascript">
+function cargar(){
+const fil=6;
+const col=5;
+const tabla =new Array(fil);
+for (let i=0;i<fil;i++)
+	tabla[i]=new Array(col);
+ 
+let n=1;
+for (let i=0;i<fil;i++)
+	for (let j=0;j<col;j++){
+		tabla[i][j]=n;
+		n++;
+		}
+table=document.createElement('table');
+for (let i=0;i<fil;i++){
+    let tr=document.createElement('tr');
+	for (let j=0;j<col;j++){	
+		let td=document.createElement('td');
+		td.innerHTML=tabla[i][j];
+		tr.appendChild(td);
+		}
+	table.appendChild(tr);
+	}
+document.getElementById("div1").appendChild(table);
+}
+</script>
+</head>
+<body onload="cargar()">
+<div>
+PROBANDO ARRAYS BIDIMENSIONALES
+</div>
+<div id="div1">
+</div>
+</body>
+</html>
