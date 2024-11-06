@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Kite One", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      #divTabla {
+        width: 450px;
+        margin: auto;
+      }
+
+      table {
+        background-color: #eff2fb;
+        text-align: center;
+        border: 1px solid #d0a9f5;
+        font-family: "Cherry Swash", cursive;
+      }
+
+      table * {
+        font-size: 1.6rem;
+      }
+
+      td {
+        border: 1px solid #d0a9f5;
+        width: 45px;
+        transition: all 0.15ms ease-in-out;
+      }
+    </style>
+    <title>Cines</title>
+    <script type="text/javascript">
+      function pedir() {
+        const salas = Number(prompt("Cuántas salas tiene?"));
+        const dias = 5;
+        const tabla = new Array(salas);
+        for (let i = 0; i < salas; i++) tabla[i] = new Array(dias);
+
+        for (let i = 0; i < salas; i++)
+          for (let j = 0; j < dias; j++) {
+            tabla[i][j] = Math.floor(Math.random() * 101);
+          }
+
+        // mostrar
+
+        let table = document.createElement("table");
+
+        let diaSemana = ["", "L", "M", "X", "J", "V", "Total"];
+        let primeraFila = document.createElement("tr");
+        for (let m = 0; m <= dias + 1; m++) {
+          let th = document.createElement("th");
+          th.innerHTML = diaSemana[m] || "";
+          primeraFila.appendChild(th);
+        }
+        table.appendChild(primeraFila);
+
+        for (let i = 0; i < salas; i++) {
+          let tr = document.createElement("tr");
+
+          let primeraColumna = document.createElement("th");
+          primeraColumna.innerHTML = `Sala ${i + 1}`;
+          tr.appendChild(primeraColumna);
+
+          totalFila = 0;
+
+          for (let j = 0; j < dias; j++) {
+            let td = document.createElement("td");
+            td.innerHTML = tabla[i][j];
+            tr.appendChild(td);
+            totalFila += parseInt(tabla[i][j]) || 0;
+          }
+
+          let totalTd = document.createElement("td");
+          totalTd.innerHTML = totalFila;
+          tr.appendChild(totalTd);
+
+          table.appendChild(tr);
+        }
+
+        document.getElementById("divTabla").appendChild(table);
+      }
+    </script>
+  </head>
+  <body onload="pedir()">
+    <div id="divTabla"></div>
+  </body>
+</html>
