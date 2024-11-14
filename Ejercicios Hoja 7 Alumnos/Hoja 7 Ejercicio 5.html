@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAW Aimlabs</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #333;
+        padding: 20px;
+        transition: background-color 0.3s ease;
+      }
+      h1 {
+        color: #f4f4f9;
+        font-size: 28px;
+        animation: fadeIn 1s ease;
+      }
+      #game {
+        display: grid;
+        gap: 10px;
+        margin-top: 20px;
+        justify-content: center;
+        transition: transform 0.5s ease;
+      }
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ddd;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      .cell:hover {
+        background-color: #bbb;
+        transform: scale(1.1);
+      }
+      .cell:active {
+        background-color: #bbb;
+        transform: scale(1);
+      }
+      .correct {
+        background-color: #4caf50;
+        color: white;
+        animation: correctAnimation 0.5s ease-in-out;
+        pointer-events: none;
+      }
+      .incorrect {
+        background-color: #f44336;
+        color: white;
+        animation: incorrectAnimation 0.5s ease-in-out;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #f4f4f9;
+        animation: fadeIn 1s ease;
+      }
+      select,
+      button {
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      select:focus,
+      button:focus {
+        outline: none;
+        background-color: #e0f7fa;
+      }
+      button {
+        background-color: #008cba;
+        color: white;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #005f73;
+      }
+
+      #stopwatch {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 40px;
+        color: white;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes correctAnimation {
+        50% {
+          background-color: #4caf50;
+          transform: scale(1.2);
+        }
+      }
+      @keyframes incorrectAnimation {
+        50% {
+          background-color: #f44336;
+          transform: scale(1.2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DAW Aimlabs</h1>
+
+    <div id="stopwatch">00:00:00</div>
+
+    <select id="boardSize">
+      <option value="3">3x3</option>
+      <option value="4">4x4</option>
+      <option value="5">5x5</option>
+      <option value="6">6x6</option>
+      <option value="10">10x10</option>
+    </select>
+
+    <div id="game"></div>
+
+    <div id="result"></div>
+
+    <button id="resetButton" style="display: none">Reiniciar</button>
+
+    <script>
+      let current = 1,
+        errors = 0,
+        gridSize = 3,
+        timer = null,
+        seconds = 0,
+        minutes = 0,
+        milliseconds = 0,
+        started = false;
+
+      function generateValues(size) {
+        let nums = [];
+        let totalCells = size * size;
+        while (nums.length < totalCells) {
+          let num = Math.floor(Math.random() * totalCells) + 1;
+          if (!nums.includes(num)) {
+            nums.push(num);
+          }
+        }
+        return nums;
+      }
+
+      function renderBoard(values, size) {
+        let game = document.getElementById("game");
+        game.innerHTML = "";
+        game.style.gridTemplateColumns = `repeat(${size}, 60px)`;
+
+        values.forEach((num) => {
+          let cell = document.createElement("div");
+          cell.className = "cell";
+          cell.textContent = num;
+          cell.onclick = () => checkCell(cell, num);
+          game.appendChild(cell);
+        });
+
+        game.style.transform = "scale(0.5)";
+        setTimeout(() => (game.style.transform = "scale(1)"), 50);
+      }
+
+      function checkCell(cell, num) {
+        if (!started) {
+          startTimer();
+        }
+
+        if (num === current) {
+          cell.className = "cell correct";
+          current++;
+          if (current > gridSize * gridSize) showResult();
+        } else {
+          cell.className = "cell incorrect";
+          errors++;
+        }
+      }
+
+      function showResult() {
+        let result = document.getElementById("result");
+        result.textContent =
+          errors === 0
+            ? "¡Felicidades! Sin errores."
+            : `Has terminado con ${errors} ${
+                errors === 1 ? "error" : "errores"
+              }.`;
+        document.getElementById("resetButton").style.display = "block";
+        stopTimer();
+      }
+
+      function updateBoard() {
+        gridSize = parseInt(document.getElementById("boardSize").value);
+        current = 1;
+        errors = 0;
+        let values = generateValues(gridSize);
+        renderBoard(values, gridSize);
+        document.getElementById("result").textContent = "";
+        document.getElementById("resetButton").style.display = "none";
+        resetTimer();
+      }
+
+      function resetGame() {
+        current = 1;
+        errors = 0;
+        document.getElementById("resetButton").style.display = "none";
+        updateBoard();
+        startTimer();
+      }
+
+      function resetTimer() {
+        seconds = 0;
+        minutes = 0;
+        milliseconds = 0;
+        document.getElementById("stopwatch").textContent = "00:00:00";
+      }
+
+      function startTimer() {
+        if (started) return;
+        started = true;
+
+        timer = setInterval(() => {
+          milliseconds++;
+          if (milliseconds === 100) {
+            milliseconds = 0;
+            seconds++;
+          }
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+          }
+
+          document.getElementById("stopwatch").textContent =
+            (minutes < 10 ? "0" : "") +
+            minutes +
+            ":" +
+            (seconds < 10 ? "0" : "") +
+            seconds +
+            ":" +
+            (milliseconds < 10 ? "0" : "") +
+            milliseconds;
+        }, 10);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+        timer = null;
+        started = false;
+      }
+
+      document
+        .getElementById("boardSize")
+        .addEventListener("change", updateBoard);
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", resetGame);
+
+      updateBoard();
+    </script>
+  </body>
+</html>
