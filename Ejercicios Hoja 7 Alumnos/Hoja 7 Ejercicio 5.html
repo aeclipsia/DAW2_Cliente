@@ -20,43 +20,37 @@
         animation: fadeIn 1s ease;
       }
       #game {
-        display: grid;
-        gap: 10px;
         margin-top: 20px;
         justify-content: center;
         transition: transform 0.5s ease;
       }
-      .cell {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #ddd;
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        border: none;
+        text-align: center;
         width: 60px;
         height: 60px;
         font-size: 24px;
         font-weight: bold;
-        border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
+        background-color: #ddd;
+        border-radius: 8px;
       }
-      .cell:hover {
+      td:hover {
         background-color: #bbb;
         transform: scale(1.1);
       }
-      .cell:active {
-        background-color: #bbb;
-        transform: scale(1);
-      }
-      .correct {
+      td.correct {
         background-color: #4caf50;
         color: white;
-        animation: correctAnimation 0.5s ease-in-out;
         pointer-events: none;
       }
-      .incorrect {
+      td.incorrect {
         background-color: #f44336;
         color: white;
-        animation: incorrectAnimation 0.5s ease-in-out;
       }
       #result {
         margin-top: 20px;
@@ -110,18 +104,6 @@
           transform: translateY(0);
         }
       }
-      @keyframes correctAnimation {
-        50% {
-          background-color: #4caf50;
-          transform: scale(1.2);
-        }
-      }
-      @keyframes incorrectAnimation {
-        50% {
-          background-color: #f44336;
-          transform: scale(1.2);
-        }
-      }
     </style>
   </head>
   <body>
@@ -168,18 +150,27 @@
       function renderBoard(values, size) {
         let game = document.getElementById("game");
         game.innerHTML = "";
-        game.style.gridTemplateColumns = `repeat(${size}, 60px)`;
 
-        values.forEach((num) => {
-          let cell = document.createElement("div");
-          cell.className = "cell";
-          cell.textContent = num;
-          cell.onclick = () => checkCell(cell, num);
-          game.appendChild(cell);
-        });
+        // Create a table element
+        let table = document.createElement("table");
 
-        game.style.transform = "scale(0.5)";
-        setTimeout(() => (game.style.transform = "scale(1)"), 50);
+        // Populate the table rows and cells
+        for (let i = 0; i < size; i++) {
+          let tr = document.createElement("tr");
+          for (let j = 0; j < size; j++) {
+            let td = document.createElement("td");
+            td.textContent = values[i * size + j]; // Access the corresponding value
+            td.onclick = () => checkCell(td, values[i * size + j]);
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+
+        // Add the table to the game container
+        game.appendChild(table);
+
+        // Optional: Reset game appearance scaling
+        game.style.transform = "scale(1)";
       }
 
       function checkCell(cell, num) {
@@ -188,11 +179,11 @@
         }
 
         if (num === current) {
-          cell.className = "cell correct";
+          cell.className = "correct";
           current++;
           if (current > gridSize * gridSize) showResult();
         } else {
-          cell.className = "cell incorrect";
+          cell.className = "incorrect";
           errors++;
         }
       }
@@ -213,6 +204,7 @@
         gridSize = parseInt(document.getElementById("boardSize").value);
         current = 1;
         errors = 0;
+        started = false; // Ensure timer does not start prematurely
         let values = generateValues(gridSize);
         renderBoard(values, gridSize);
         document.getElementById("result").textContent = "";
@@ -225,7 +217,6 @@
         errors = 0;
         document.getElementById("resetButton").style.display = "none";
         updateBoard();
-        startTimer();
       }
 
       function resetTimer() {
