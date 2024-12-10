@@ -1,51 +1,112 @@
+<!DOCTYPE html>
 <html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<link href='http://fonts.googleapis.com/css?family=Kite+One|Cherry+Swash' rel='stylesheet' type='text/css'>
-		<style type='text/css'>
-		
-		body{
-			font-family: 'Kite One', sans-serif;
-		}
-		
-		#div1 {
-			width:250px;
-			margin:auto;
-		}
-		
-		h1{
-			text-align:center;
-			font-size:20pt;
-		}
-		
-		table{
-			background-color: #EFF2FB;
-			text-align:center;
-			width:250px;
-			border: 1px solid #D0A9F5;
-			font-family: 'Cherry Swash', cursive;
-		}
-		
-		.festivo{
-			background-color: #D0A9F5;
-		}
-		
-		td{
-			border: 1px solid #D0A9F5;
-		}
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kite+One|Cherry+Swash"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style type="text/css">
+      body {
+        font-family: "Kite One", sans-serif;
+      }
 
-		</style>
+      #div1 {
+        width: 250px;
+        margin: auto;
+      }
 
+      h1 {
+        text-align: center;
+        font-size: 20pt;
+      }
 
-<script type="text/javascript">
-function cargar(){
-}
-</script>
-</head>
-<body onload="cargar()">
-<h3></h3>
-<br>
-<div id="div1">
-</div>
-</body>
+      table {
+        background-color: #eff2fb;
+        text-align: center;
+        width: 250px;
+        border: 1px solid #d0a9f5;
+        font-family: "Cherry Swash", cursive;
+      }
+
+      .festivo {
+        background-color: #d0a9f5;
+      }
+
+      td {
+        border: 1px solid #d0a9f5;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function cargar() {
+        defaultYear = 2022;
+        year =
+          parseInt(
+            prompt("Introduce el año (por defecto 2022):", defaultYear)
+          ) || defaultYear;
+        divCalendario = document.getElementById("div1");
+        calendario = document.createElement("table");
+
+        daysOfWeek = ["L", "M", "X", "J", "V", "S", "D"];
+        festivos = [6, 8, 25];
+
+        thead = document.createElement("thead");
+        headerRow = document.createElement("tr");
+        daysOfWeek.forEach((day) => {
+          th = document.createElement("th");
+          th.textContent = day;
+          headerRow.append(th);
+        });
+        thead.appendChild(headerRow);
+        calendario.appendChild(thead);
+
+        firstDay = new Date(year, 11, 1).getDay();
+        daysInMonth = 31;
+
+        tbody = document.createElement("tbody");
+        let row = document.createElement("tr");
+
+        let dia;
+        if (firstDay === 0) {
+          dia = 6;
+        } else {
+          dia = firstDay - 1;
+        }
+        for (let i = 0; i < dia; i++) {
+          emptyCell = document.createElement("td");
+          row.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          cell = document.createElement("td");
+          cell.textContent = day;
+
+          isSunday = (dia + day - 1) % 7 === 6;
+          if (festivos.includes(day) || isSunday) {
+            cell.classList.add("festivo");
+          }
+
+          row.appendChild(cell);
+
+          if ((dia + day) % 7 === 0) {
+            tbody.appendChild(row);
+            row = document.createElement("tr");
+          }
+        }
+
+        if (row.children.length > 0) {
+          tbody.appendChild(row);
+        }
+
+        calendario.appendChild(tbody);
+        divCalendario.appendChild(calendario);
+      }
+    </script>
+  </head>
+  <body onload="cargar()">
+    <h1>Calendario de Diciembre</h1>
+    <div id="div1"></div>
+  </body>
 </html>
