@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script>
+ 
+function abre_mia(){
+mia=window.open('','mia','width=300,height=200,top=300,left=500' );
+mia.document.write("<p>Esta es mi ventana</p>");
+mia.document.close();  // para que al abrir de nuevo limpie el documento
+}
+
+function cerrada(){
+alert(mia.closed);
+}
+function fun1(){
+alert (mia.innerHeight+' x '+mia.innerWidth);
+}
+function fun2(){
+alert (mia.name);
+}
+function fun3(){
+mia.document.write("<p>Esta es mi ventana</p>");
+mia.document.write('opener '+mia.opener.name+'<br>');
+mia.document.write ('parent '+mia.parent.name+'<br>');
+mia.document.write ('top '+mia.top.name+'<br>');
+mia.document.write ('self '+mia.self.name+'<br>');
+mia.document.close();
+}
+window.defaultStatus='Barra de estado';  // lo vemos en IE
+window.name='Principal';
+document.write ('<br>innerHeight '+window.innerHeight);
+document.write ('<br>innerWidth '+window.innerWidth);
+document.write ('<br>length '+window.length);
+document.write ('<br>name '+window.name);
+document.write ('<br>opener '+window.opener);
+document.write ('<br>outerHeight '+window.outerHeight);
+document.write ('<br>outerWidth '+window.outerWidth);
+document.write ('<br>pageXOffset '+window.pageXOffset);
+document.write ('<br>pageYOffset '+window.pageYOffset);
+document.write ('<br>screenLeft '+window.screenLeft );
+document.write ('<br>screenTop  '+window.screenTop);
+</script>
+</head>
+<body>
+<br>
+<input type="button" value="Abrir una mia" onclick="abre_mia()">  <br>
+<input type="button" value="¿Se ha cerrado mia?" onclick="cerrada()">  <br>
+<input type="button" value="¿Alto y ancho utilizable de mia?" onclick="fun1()">  <br>
+<input type="button" value="¿Nombre de mi ventana?" onclick="fun2()">  <br>
+<input type="button" value="¿Quien la abrió?" onclick="fun3()">  <br>
+</body>
+</html>

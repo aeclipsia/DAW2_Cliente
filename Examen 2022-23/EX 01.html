@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EXAMEN EJERCICIO 1</title>
+    <link rel="stylesheet" href="main.css" />
+    <style>
+      .clasePremio {
+        color: red;
+      }
+    </style>
+    <script type="text/javascript">
+      imagenes = new Array(
+        "Bulbasaur",
+        "Ivysaur",
+        "Venusaur",
+        "Charmander",
+        "Charmeleon",
+        "Charizard",
+        "Squirtle",
+        "Wartortle",
+        "Blastoise"
+      );
+
+      function cargar() {
+        span = document.getElementById("idspan");
+        table = document.getElementById("tabla");
+        saldo = 10;
+        ganancias = 0;
+        gastado = 0;
+        changeText();
+      }
+
+      function changeText() {
+        i = 0;
+        content = [
+          "Jugada:2€",
+          "2 Iguales: 5€ premio",
+          "3 Iguales: 10€ premio",
+        ];
+        setInterval(() => {
+          span.textContent = content[i];
+          if (i != 2) {
+            i++;
+          } else {
+            i = 0;
+          }
+        }, 1000);
+      }
+
+      function randomNum() {
+        return Math.floor(Math.random() * imagenes.length);
+      }
+
+      function jugar() {
+        if (saldo < 2) {
+          alert("Vagabundo");
+          return;
+        }
+
+        saldo -= 2;
+        gastado += 2;
+
+        ficha = createTurn();
+
+        repetido = -1;
+        Array.from(ficha).forEach((x) => {
+          rep = 0;
+          Array.from(ficha).forEach((y) => {
+            if (x == y) {
+              rep += 1;
+            }
+          });
+          if (rep > repetido) {
+            repetido = rep;
+          }
+        });
+
+        let tr = document.createElement("tr");
+        for (let i = 0; i < ficha.length + 1; i++) {
+          let td = document.createElement("td");
+          if (i == ficha.length) {
+            if (repetido == 3) {
+              td.innerHTML =
+                "<p class='premio' style='color:red'>PREMIO 10€</p>";
+              saldo += 10;
+              ganancias += 10;
+            } else if (repetido == 2) {
+              td.innerHTML =
+                "<p class='premio' style='color:red'>PREMIO 5€</p>";
+              saldo += 5;
+              ganancias += 5;
+            } else {
+              td.innerHTML = "<p>No hay premio, juega de nuevo!</p>";
+            }
+          } else {
+            let img = document.createElement("img");
+            img.src = `pokemon/${imagenes[ficha[i]]}.png`;
+            td.appendChild(img);
+          }
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+
+      function borrar() {
+        filas = table.getElementsByTagName("tr");
+        Array.from(filas).forEach((element) => {
+          if (!element.lastChild.firstChild.hasAttribute("class")) {
+            element.remove();
+          }
+        });
+      }
+
+      function createTurn() {
+        ficha = [];
+        for (let index = 0; index < 3; index++) {
+          ficha.push(randomNum());
+        }
+        return ficha;
+      }
+
+      function result() {
+        resultado = window.open(
+          "",
+          "_blank",
+          "width=500,height=500,top=300,left=500"
+        );
+        resultado.document.write(
+          "<table><tr><thead>Saldo Cuenta</thead><thead>Gastado</thead><thead>Ganado</thead></tr>",
+          "<tr><td>",
+          saldo,
+          "</td><td>",
+          gastado,
+          "</td><td>",
+          ganancias,
+          "</td></table>"
+        );
+      }
+    </script>
+  </head>
+  <body onload="cargar()">
+    <div>
+      <p>
+        JUGANDO A POKEMON &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+          id="idspan"
+        ></span>
+      </p>
+      <input type="button" value="JUGAR" onclick="jugar()" />
+      <input type="button" value="BORRAR SIN PREMIO" onclick="borrar()" />
+      <input type="button" value="http://www.pokemongo.com/es-es/" />
+      <input type="button" value="GANANCIAS" onclick="result()" />
+      <br />
+      <table id="tabla"></table>
+    </div>
+  </body>
+</html>

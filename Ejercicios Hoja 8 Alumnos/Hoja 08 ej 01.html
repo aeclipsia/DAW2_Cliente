@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+    <style>
+      #image {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="start()">Start countdown</button>
+    <h1 id="countdown">10</h1>
+    <img id="image" src="https://picsum.photos/200/300" alt="" />
+    <script>
+      countdown = document.getElementById("countdown");
+      image = document.getElementById("image");
+      function start() {
+        let value = 10;
+        let count = setInterval(() => {
+          countdown.textContent = value;
+          value--;
+
+          if (value < 0) {
+            clearInterval(count);
+            countdown.style.display = "none";
+            image.style.display = "block";
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

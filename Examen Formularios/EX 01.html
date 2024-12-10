@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EXAMEN EJERCICIO 1</title>
+    <link rel="stylesheet" type="text/css" href="stylepoli.css" />
+    <style type="text/css">
+      body {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        color: #210b61;
+        font-size: 10pt;
+      }
+      div {
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #central,
+      #abajo {
+        text-align: center;
+      }
+      #pos1 {
+        position: relative;
+        background-color: #f5da81;
+      }
+      table {
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+      }
+      td {
+        font-size: 12px;
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      function load() {
+        day = document.getElementById("dd");
+        month = document.getElementById("mm");
+        year = document.getElementById("aaaa");
+        edad = document.getElementById("edad");
+        tarifas = document.getElementsByTagName("td");
+        precioCaja = document.getElementById("precio");
+        tarifaValue = 0;
+        hoy = new Date();
+        precio = 0;
+
+        for (let selected of tarifas) {
+          selected.addEventListener("click", function () {
+            for (let cajas of tarifas) {
+              cajas.style.backgroundColor = "white";
+            }
+            this.style.backgroundColor = "green";
+            tarifaValue = this.getElementsByTagName("b")[0].innerHTML;
+            tarifaValue = parseInt(tarifaValue.replace("€", ""));
+          });
+        }
+      }
+
+      function validate() {
+        precio = tarifaValue;
+        birthDate = validateDate();
+        validateAge(birthDate);
+        if (checkLeganes()) {
+          precio = precio - precio * 0.5;
+          precioCaja.value = precio;
+          return;
+        }
+        if (checkNumerosa()) {
+          alert("Es familia numerosa");
+          precio -= 5;
+        }
+        if (edad.value < 18) {
+          precio = precio - precio * 0.2;
+        } else if (edad.value >= 65) {
+          precio = precio - precio * 0.3;
+        }
+        precioCaja.value = precio;
+
+        document.getElementById("id33").style.display = "block";
+      }
+
+      function validateDate() {
+        dayValue = parseInt(day.value);
+        monthValue = parseInt(month.value);
+        yearValue = parseInt(year.value);
+
+        const currentYear = new Date().getFullYear();
+
+        if (isNaN(yearValue) || yearValue < 1900 || yearValue > currentYear) {
+          year.focus();
+          return;
+        }
+
+        if (isNaN(monthValue) || monthValue < 1 || monthValue > 12) {
+          month.focus();
+          return;
+        }
+
+        const lastDay = new Date(yearValue, monthValue, 0).getDate();
+
+        if (isNaN(dayValue) || dayValue < 1 || dayValue > lastDay) {
+          day.focus();
+          return;
+        }
+
+        return new Date(yearValue, monthValue - 1, dayValue);
+      }
+
+      function validateAge(birthDate) {
+        age = hoy.getFullYear() - birthDate.getFullYear();
+        mesDiff = hoy.getMonth() - birthDate.getMonth();
+
+        if (
+          mesDiff < 0 ||
+          (mesDiff === 0 && hoy.getDate() < birthDate.getDate())
+        ) {
+          age--;
+        }
+
+        if (age < 14 || age > 80) {
+          alert("Tienes que tener más de 14 años y menos de 80");
+          return;
+        }
+
+        edad.value = age;
+      }
+
+      function checkLeganes() {
+        leganes = document.getElementsByName("leganes")[0];
+        if (leganes.checked) {
+          return true;
+        }
+        return false;
+      }
+
+      function checkNumerosa() {
+        numerosa = document.getElementsByName("numerosa")[0];
+        if (numerosa.checked) {
+          return true;
+        }
+        return false;
+      }
+      function comprobarData() {
+        telefono = document.getElementById("telefono");
+        val1 = document.getElementById("val1");
+        val2 = document.getElementById("val2");
+
+        reg1 = /^[A-M]*\d{2,}[A-M]*$/;
+        reg2 = /^([A-Z]\.\d){2,}$/;
+
+        if (!reg1.test(val1.value)) {
+          alert("Fallaste la primera validación");
+          return;
+        }
+        if (!reg2.test(val2.value)) {
+          alert("Fallaste la segunda validación");
+          return;
+        }
+
+        mine = window.open("", "mine", "width=300,height=200,top=200,left=300");
+        mine.document.write("Nos pondremos en contacto contigo.");
+      }
+    </script>
+  </head>
+  <body onload="load()">
+    <h1>POLIDEPORTIVO LEGANES SPORT</h1>
+    <div id="central">
+      <fieldset id="pos1">
+        Calculamos el precio mensual de tu carnet como socio en nuestro
+        polideportivo. Indica tu fecha de nacimiento y el uso que harías de él.
+      </fieldset>
+    </div>
+    <br />
+    <div id="abajo">
+      <form name="form1">
+        <label>Fecha nacimiento</label>
+        <input
+          type="text"
+          id="dd"
+          placeholder="dd"
+          style="text-align: center"
+          size="3"
+        />
+        <input
+          type="text"
+          id="mm"
+          placeholder="mm"
+          style="text-align: center"
+          size="3"
+        />
+        <input
+          type="text"
+          id="aaaa"
+          placeholder="aaaa"
+          style="text-align: center"
+          size="5"
+        />
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp EDAD
+        <input type="text" id="edad" size="3" readonly />
+
+        <label>Empadronado en Leganés </label>
+        <input type="radio" name="leganes" />SÍ
+        <input type="radio" name="leganes" />NO
+        <label>Familia numerosa </label>
+        <input type="radio" name="numerosa" />SÍ
+        <input type="radio" name="numerosa" />NO
+        <br />
+        <label>TARIFAS:Clica la que te interesa</label>
+        <table>
+          <tr>
+            <td value>1 hora semanal de L a V <b>20€</b></td>
+            <td>2 horas semanales de L a V <b>30€</b></td>
+            <td>4 horas semanales de L a V <b>40€</b></td>
+            <td>Fines de Semana <b>30€</b></td>
+            <td>Entrada libre todos los días <b>60€</b></td>
+          </tr>
+        </table>
+        <hr />
+        <label>Descuentos:</label>
+        Menores de 18 años: 20%
+        <br />Mayores de 65 años: 30% <br />Familia numerosa: 5€
+        <br />Empadronado en Leganés: 50% (este descuento anula los anteriores)
+        <br /><br />
+        <input type="button" value="CALCULAR PRECIO" onclick="validate()" />
+        <input type="text" id="precio" size="2" readonly />
+      </form>
+    </div>
+    <div id="id33" style="display: none">
+      <form name="form2">
+        <label>Teléfono</label>
+        <input type="text" id="telefono" size="20" />
+        <br />No soy una máquina (Teclea un texto de entre 6 y 8 caracteres con
+        al menos 2 números seguidos y el resto letras de la A a la M)
+        <input type="text" id="val1" size="20" />
+        <br />Vale, el anterior no me sale, pero no soy una máquina (Teclea una
+        secuencia de letra.número al menos 2 veces L.9L.9 )
+        <input type="text" id="val2" size="20" />
+        <br />
+        <input type="button" value="ENVIAR DATOS" onclick="comprobarData()" />
+      </form>
+    </div>
+  </body>
+</html>

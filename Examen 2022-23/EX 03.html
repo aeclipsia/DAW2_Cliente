@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>EXAMEN EJERCICIO 1</title>
+		<link rel="stylesheet" href="main.css">
+<style type="text/css">
+ body{
+   font-family: Georgia, "Times New Roman", Times, serif;
+ }
+#div1{
+	width:600px;
+	height:450px;
+	margin-left:20px;
+	border: 2px black solid;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background-color:#EBDEF0  ;
+	}
+ .grises {
+     background-color:#BDBDBD;
+	 border-color:black;
+	 }
+}
+ </style>
+ <body>
+ <form name="form">
+<div id="div1">
+<h1>PELUQUERÍA QUÉ PELOS!</h1>
+Estos son nuestras ofertas
+<br><br>
+<input type="checkbox" id="idtinte" >Tinte
+ <select id="seltinte">
+<option value>Baño de color</option>
+<option value>Mechas</option>
+</select>
+<br><br>
+<input type="checkbox" id="idcorte"  >Corte
+<select id="selcorte">
+<option value>Flequillo y puntas</option>
+<option value>Cambio total</option>
+</select>
+<br><br>
+<input type="checkbox" id="idpeinar" >Peinar
+<select id="selpeinar">
+<option value>Al aire</option>
+<option value>Alisado</option>
+<option value>Otros</option>
+</select>
+<br><br>
+Seleccionar día
+<select id="dia"> 
+<option value >Seleccione</option>
+<option value >Lunes a Jueves</option>
+<option value >Viernes</option>
+<option value >Sábado o Domingo</option>
+</select>
+ Horario 
+<select id="mt">
+<option value >Seleccione</option>
+<option value >Mañana</option>
+<option value >Tarde</option>
+</select>
+<hr>
+
+<input type="button" value="Mostrar Precio" onclick="comprobar()" > 
+
+<div id="desc">
+<br>
+DESCUENTOS Y PRECIOS
+</div>
+<br> Elija un día para visitarnos (dd/mm/aaaa) <input id="fecha" type="text" size=10>
+<input type="button" value="Mostrar Disponibilidad" > 
+ <div>
+</div>
+</form> 
+</body>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CONTROL FORMULARIOS</title>
+    <link rel="stylesheet" href="main.css" />
+    <style>
+      #precio {
+        color: #222;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+    </style>
+  </head>
+  <body>
+    Actualmente nuestros precios por habitación y noche son (Iva incluido):
+    <ul>
+      <li>Habitación individual 50€</li>
+      <li>Habitación doble 70€</li>
+    </ul>
+    <input type="checkbox" id="check1" value="50" />Habitación individual<br />
+    <span id="id50">
+      Seleccione cuantas
+      <select id="sel1">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+    </span>
+    <br />
+    <input type="checkbox" id="check2" value="70" />Habitación doble<br />
+    <span id="id70">
+      Seleccione cuantas
+      <select id="sel2">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </span>
+    <br />
+
+    Pudiendo aplicar uno de nuestros descuentos<br />
+    <input
+      type="radio"
+      name="desc"
+      value="0"
+      onclick="descuento=this.value"
+      checked
+    />
+    Sin descuento
+    <input type="radio" name="desc" value="10" onclick="descuento=this.value" />
+    Familia numerosa (10%)
+    <input type="radio" name="desc" value="20" onclick="descuento=this.value" />
+    Tercera edad (20%)
+    <br />
+    Si nos deja un teléfono nosotros le llamamos
+    <input type="text" id="telefono" />
+    <br />
+    <input type="button" value="CALCULAR PRECIO" onclick="calcular()" />
+    <br /><br />
+    <input
+      type="button"
+      id="idpet"
+      value="Más información"
+      onclick="pedir()"
+      style="display: none"
+    />
+    <script>
+      var descuento = 0;
+
+      individual = document.getElementById("check1");
+      individualCantidad = document.getElementById("sel1");
+      doble = document.getElementById("check2");
+      dobleCantidad = document.getElementById("sel2");
+      discounts = document.getElementsByName("desc");
+      precio = 0;
+
+      function calcular() {
+        precio = 0;
+        if (individual.checked) {
+          precioIndividual = 50 * individualCantidad.value;
+          precio += precioIndividual;
+        }
+        if (doble.checked) {
+          precioDoble = 70 * dobleCantidad.value;
+          precio += precioDoble;
+        }
+        discounts.forEach((element) => {
+          if (element.checked) {
+            descuento = element.value;
+            precioDescuento = precio - precio * (descuento / 100);
+          }
+        });
+        document.getElementById("idpet").style.display = "block";
+        openWindow();
+      }
+
+      function openWindow() {
+        recibo = window.open("", "Recibo", "width=500,height=500,top=1,left=0");
+        recibo.document.write(
+          "<p>El precio por noche de las habitaciones seleccionadas es:</p>"
+        );
+        if (individualCantidad.value != 0 && individual.checked) {
+          recibo.document.write(
+            "<p>",
+            individualCantidad.value,
+            " Individual --->",
+            precioIndividual,
+            "&#x20AC;</p>"
+          );
+        }
+        if (doble.dobleCantidad != 0 && doble.checked) {
+          recibo.document.write(
+            "<p>",
+            dobleCantidad.value,
+            " Doble -->",
+            precioDoble,
+            "&#x20AC;</p>"
+          );
+        }
+        recibo.document.write("<p>Total por noche: ", precio, "&#x20AC;</p>");
+        recibo.document.write(
+          "<p>Aplicando ",
+          descuento,
+          "% descuento: ",
+          precioDescuento,
+          "&#x20AC</p>"
+        );
+        recibo.document.close();
+      }
+
+      function pedir() {}
+    </script>
+  </body>
+</html>
