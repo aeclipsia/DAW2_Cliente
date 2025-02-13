@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bienvenido</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("body").css("background-color", "#F6CECE");
+
+        $("<h1>Espero que jQuery te guste</h1>)")
+          .css({ opacity: 0, color: "blue" })
+          .appendTo($("body"))
+          .animate({ opacity: 1 }, 10000);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

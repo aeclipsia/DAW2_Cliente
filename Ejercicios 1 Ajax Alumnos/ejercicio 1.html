@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio 1</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+      }
+    </style>
+    <script type="text/javascript">
+      function fetchXML() {
+        fetch("discos.xml")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("No se ha podido obtener el archivo.");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            thead = document.createElement("thead");
+            th1 = document.createElement("th");
+            th1.innerHTML = "ARTISTA";
+            thead.appendChild(th1);
+            th2 = document.createElement("th");
+            th2.innerHTML = "TITULO";
+            thead.appendChild(th2);
+            th3 = document.createElement("th");
+            th3.innerHTML = "DISCOGRÁFICA";
+            thead.appendChild(th3);
+            document.getElementById("demo").appendChild(thead);
+
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data, "text/xml");
+            artist = xmlDoc.getElementsByTagName("ARTIST");
+            title = xmlDoc.getElementsByTagName("TITLE");
+            company = xmlDoc.getElementsByTagName("COMPANY");
+            for (let i = 0; i < artist.length; i++) {
+              tr = document.createElement("tr");
+              tdA = document.createElement("td");
+              tdA.innerHTML = artist[i].childNodes[0].nodeValue;
+              tr.appendChild(tdA);
+              tdT = document.createElement("td");
+              tdT.innerHTML = title[i].childNodes[0].nodeValue;
+              tr.appendChild(tdT);
+              tdD = document.createElement("td");
+              tdD.innerHTML = company[i].childNodes[0].nodeValue;
+              tr.appendChild(tdD);
+              document.getElementById("demo").appendChild(tr);
+            }
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <button type="button" onclick="fetchXML()">MIS DISCOS</button>
+    <br /><br />
+    <table id="demo"></table>
+  </body>
+</html>

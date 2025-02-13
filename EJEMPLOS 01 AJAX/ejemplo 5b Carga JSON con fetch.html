@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/ xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title> </title>
+
+    <script type="text/javascript">
+      function descargaArchivo() {
+        fetch("frameworks.json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error al obtener el archivo JSON");
+            }
+            return response.json(); // Convierte la respuesta en formato JSON
+          })
+          .then((data) => {
+            console.log(data); // Aquí tienes el contenido del archivo JSON
+
+            var out = "";
+            var i;
+            for (i = 0; i < data.length; i++) {
+              out +=
+                '<a href="' +
+                data[i].url +
+                '">' +
+                data[i].framework +
+                "</a><br>";
+            }
+            document.getElementById("id1").innerHTML = out;
+          })
+          .catch((error) => {
+            document.getElementById("id1").innerHTML = error;
+          });
+      }
+    </script>
+  </head>
+  <body onload="descargaArchivo()">
+    <div id="id1"></div>
+  </body>
+</html>

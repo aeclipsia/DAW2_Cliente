@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+function rellenar(){
+document.getElementById("id1").innerHTML="Rellenando por id";
+var elemento1=document.getElementsByName("n1");
+for (i=0;i<elemento1.length;i++){
+	elemento1[i].innerHTML="Soy el "+i;
+	elemento1[i].style.fontSize="20pt";
+	elemento1[i].style.color="green";
+	}
+var elemento2=document.getElementsByName("n2");
+elemento2[0].value="Soy n2";
+var elemento3=document.getElementsByName("n3");
+elemento3[1].checked=true;
+}
+</script>
+</head>
+<body onload="rellenar()">
+<div id="id1"></div>
+<div name="n1"></div>
+<div name="n1"></div>
+Valor<input type="text" name="n2">
+<br>
+Opción 1 <input type="radio" name="n3"> Opción 2 <input type="radio" name="n3"> 
+</body>
+</html>

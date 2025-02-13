@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Drop Down Menu</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="stilos 01.css" type="text/css" />
+    <script>
+      $(document).ready(function () {
+        $("a").hide();
+        $("#item1").delay(500).show(1000);
+        $("#item2").delay(1500).show(1000);
+        $("#item3").delay(2500).show(1000);
+        $("a").mouseover(function () {
+          $(this).css({ backgroundColor: "#444", textDecoration: "underline" });
+        });
+        $("a").mouseleave(function () {
+          $(this).css({ backgroundColor: "#333", textDecoration: "none" });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="menu">
+      <ul>
+        <li><a id="item1" href="#">Inicio</a></li>
+        <li><a id="item2" href="#">Tutoriales</a></li>
+        <li><a id="item3" href="#">Ejemplos</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EXAMEN EJERCICIO 2</title>
+    <link rel="stylesheet" href="main.css" />
+
+    <style>
+      span {
+        display: none;
+      }
+
+      #precio {
+        color: #222;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+    </style>
+    <script>
+      function cargar() {
+        actividad = document.getElementById("sel");
+        info = document.getElementById("info");
+      }
+
+      function añadir() {
+        add = false;
+        actividadesLista = info.getElementsByTagName("p");
+        Array.from(actividadesLista).forEach((element) => {
+          if (
+            element.textContent ==
+            actividad.options[actividad.selectedIndex].text
+          ) {
+            alert("Actividad ya añadido");
+            return (add = true);
+          }
+        });
+        if (!add) {
+          p = document.createElement("p");
+          p.textContent = actividad.options[actividad.selectedIndex].text;
+          p.setAttribute("value", actividad.value);
+          p.setAttribute("onclick", "borrar(this)");
+          info.appendChild(p);
+        }
+      }
+
+      function borrar(element) {
+        info.removeChild(element);
+      }
+
+      function validar() {}
+    </script>
+  </head>
+  <body onload="cargar()">
+    <h1>CLUB JUVENIL PLAZA</h1>
+    <img src="SALESIANAS.jpg" width="30%" height="30%" />
+    <h2>Formulario de inscripción para Actividades Extraescolares</h2>
+
+    Nombre y Apellidos <input type="text" id="nom" size="20" /> <br /><br />
+
+    Fecha Nacimiento
+    <input type="text" id="fnac" size="8" placeholder="aaaa-dd-mm" />
+
+    Edad al finalizar el año
+    <input type="text" id="edad" size="2" readonly /><br />
+    <br />
+
+    DNI <input type="text" id="dni1" size="10" /> DNI Tutor
+    <input type="text" id="dni2" size="10" /> Teléfono
+    <input type="text" id="telefono" size="8" placeholder="999 99 99 99" />
+    <br /><br />
+    <div>
+      <input type="checkbox" /> Familia numerosa <br />
+      <input type="radio" /> NO Soy alumno del cole <input type="radio" /> Soy
+      alumno del cole con código <input type="text" id="cod" /> <br /><br />
+      Seleccione una de las actividades:
+      <select id="sel">
+        <option value="20">Yoga 20€</option>
+        <option value="30">Teatro 30€</option>
+        <option value="20">Futbol 20€</option>
+        <option value="20">Baloncesto 20€</option>
+        <option value="10">Ajedrez 10€</option>
+        <option value="25">Pintura 25€</option>
+      </select>
+      <input
+        type="button"
+        id="b1"
+        value="Añadir Actividad"
+        onclick="añadir()"
+      />
+      <input
+        type="button"
+        id="b2"
+        value="CALCULAR PRECIO"
+        onclick="validar()"
+      />
+      <br />
+      <hr />
+    </div>
+    <div id="info"></div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+</head>	
+<body>
+<h2>Crear JSON en JavaScript</h2>
+<p id="demo"></p>
+<script>
+var text ='{"nombre":"Pepe","edad":"34","domicilio":"calle Alcala, 1","estudios":[ "primario","secundario","universitario"]}';
+var obj = JSON.parse(text);
+document.getElementById("demo").innerHTML =
+obj.nombre + "<br>" +
+obj.edad + "<br>" +
+obj.domicilio + "<br>"  +
+obj.estudios[2];
+</script>
+</body>
+</html>

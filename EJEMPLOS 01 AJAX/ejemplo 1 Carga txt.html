@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/
+xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>Saludando con AJAX</title>
+		<style>
+			#fichero{
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: bold;
+				color: #600;
+				background-color: #CCC;
+				padding: 25px;
+				width: 300px;
+				margin-right: auto;
+				margin-left: auto;
+				border: medium outset #666;
+				height: 300px;
+				border-top-right-radius:2em;
+				border-bottom-left-radius:2em;
+			
+			}
+		</style>
+		<script type="text/javascript">
+		function comienza(){
+		cont=0;
+		a=window.setInterval(function(){
+		document.getElementById("id1").innerHTML=cont;
+		cont++;
+		},1000);
+		
+		}
+			function descargaArchivo() {
+		// Obtener la instancia del objeto XMLHttpRequest		
+				peticion_http = new XMLHttpRequest();	
+		// Preparar la funcion de respuesta
+				peticion_http.onreadystatechange = muestraContenido;
+		// Realizar peticion HTTP
+				peticion_http.open('GET', 'saludo.txt', true);  // establece los parámetros de la petición
+				peticion_http.send(null);   					// realiza la petición
+				
+		// cuando se recibe la respuesta del servidor, la aplicación ejecuta de forma automática la función establecida muestraContenido	
+			function muestraContenido() {
+			document.getElementById("id2").innerHTML+="<br> readyState "+peticion_http.readyState;
+			if(peticion_http.readyState == 4) {
+				
+					if(peticion_http.status == 200) {
+						 
+						document.getElementById("fichero").innerHTML=peticion_http.responseText;
+					 
+					}
+					else
+						document.getElementById("fichero").innerHTML="ERROR EN LA PETICIÓN "+peticion_http.status;
+				}
+			}
+		}
+				
+</script>
+</head>
+<body onload="comienza()">
+	<div id="fichero"></div>
+	<input type="button" value="Cargar Fichero" onclick="descargaArchivo()">
+	<div id="id1"> </div>
+	<div id="id2"> </div>
+</body>
+</html>

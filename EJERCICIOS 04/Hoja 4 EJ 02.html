@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Drop Down Menu</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="stilos 02.css" type="text/css" />
+    <script>
+      $(document).ready(function () {
+        $(".navigation>li").mouseover(function () {
+          $(this).children("ul").css({ display: "block" });
+        });
+        $(".navigation>li").mouseleave(function () {
+          $(this).children("ul").css({ display: "none" });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div style="width: 650px; margin: 0 auto">
+      <br />
+      <br />
+      <br />
+      <ul class="navigation">
+        <li><a href="#">HOME</a></li>
+        <li>
+          <a href="#">BLOG </a>
+          <ul>
+            <li><a href="#">BLOG UNO</a></li>
+            <li><a href="#">BLOG DOS</a></li>
+            <li><a href="#">BLOG TRES</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">ABOUT </a>
+          <ul>
+            <li><a href="#">ABOUT-1</a></li>
+            <li><a href="#">ABOUT-2</a></li>
+            <li><a href="#">ABOUT-3</a></li>
+            <li><a href="#">ABOUT-4</a></li>
+          </ul>
+        </li>
+        <li><a href="#">CONTACT </a></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Más ejemplos</title>
+    <style>
+      p {
+        font-family: Verdana, sans-serif;
+        font-size: 14pt;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#pintar").click(function () {
+          $("p:first").css("background-color", "green");
+        });
+
+        $("#ocultar").click(function () {
+          $("p").hide();
+        });
+
+        $("#mostrar").click(function () {
+          $("p").show();
+        });
+
+        $("#varios").click(function () {
+          $("p")
+            .hide("slow")
+            .show("fast")
+            .hide(200)
+            .show(400)
+            .hide(600)
+            .show(800);
+        });
+        $("#otro").click(function () {
+          $("p").each(function (i) {
+            $(this).html(i + " " + $(this).html());
+            if (i % 2 == 0) {
+              $(this).css("background-color", "#eee");
+            } else {
+              $(this).css("background-color", "#ccc");
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="button" id="pintar" value="PINTAR" />
+    <input type="button" id="ocultar" value="OCULTAR" />
+    <input type="button" id="mostrar" value="MOSTRAR" />
+    <input type="button" id="varios" value="VARIOS" />
+    <input type="button" id="otro" value="OTRO" />
+    <p>UNO</p>
+    <p>DOS</p>
+    <p>TRES</p>
+    <p>CUATRO</p>
+  </body>
+</html>

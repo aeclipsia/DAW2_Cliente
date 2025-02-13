@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      body {
+        text-align: center;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        font-weight: bold;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#button1").click(function () {
+          $("#div1").fadeToggle();
+          $("#div2").delay(2500).fadeToggle();
+          $("#div3").delay(1500).fadeToggle();
+        });
+        $("#button2").click(function () {
+          $("div").each(function (i) {
+            $(this)
+              .delay(1000 + i * 1000)
+              .slideToggle();
+          });
+        });
+        $("#button3").click(function () {
+          $("#div4").slideToggle(5000);
+        });
+        $("#button4").click(function () {
+          $("#div4").stop();
+        });
+        $("#button5").click(function () {
+          $("div").hide();
+          $("#div1").show(3000, function () {
+            $("#div2").show(2000, function () {
+              $("#div3").show(1000);
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <button id="button1">Con delay</button>
+    <button id="button2">Each delay</button>
+    <button id="button3">Desplegar despacio</button>
+    <button id="button4">Stop</button>
+    <button id="button5">Utilizo callback</button>
+    <br /><br />
+    <div
+      id="div1"
+      style="
+        width: 100px;
+        height: 80px;
+        display: none;
+        background-color: #f1948a;
+      "
+    >
+      SOY EL POSICIONADO PRIMERO
+    </div>
+    <br />
+    <div
+      id="div2"
+      style="
+        width: 100px;
+        height: 80px;
+        display: none;
+        background-color: #82e0aa;
+      "
+    >
+      YO SOY EL SEGUNDO
+    </div>
+    <br />
+    <div
+      id="div3"
+      style="
+        width: 100px;
+        height: 80px;
+        display: none;
+        background-color: #5dade2;
+      "
+    >
+      YO SOY EL POSICIONADO TERCERO
+    </div>
+    <br />
+    <div
+      id="div4"
+      style="
+        width: 100px;
+        height: 80px;
+        display: none;
+        background-color: #a569bd;
+      "
+    >
+      YO NO SOY NADIE :(<br /><br /><br />
+    </div>
+  </body>
+</html>

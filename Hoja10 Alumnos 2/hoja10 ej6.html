@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DOM</title>
+    <link rel="stylesheet" href="main.css" />
+    <script>
+      function alta() {
+        nuevoValor = document.getElementById("idusu").value.trim();
+        div1 = document.getElementById("div1");
+        /* crea un div nuevo */
+        nuevoUsuario = document.createElement("div");
+        nuevoUsuario.textContent = nuevoValor;
+        /*comprueba si ya existe y si existe lo añade */
+        if (div1.firstChild) {
+          div1.insertBefore(nuevoUsuario, div1.firstChild);
+        } else {
+          div1.appendChild(nuevoUsuario);
+        }
+        /*Limitar el número de usuarios a 5*/
+        if (div1.childNodes.length > 5) {
+          div1.removeChild(div1.lastChild); // Eliminar el nodo más antiguo (último)
+        }
+        document.getElementById("idusu").focus();
+      }
+    </script>
+  </head>
+  <body>
+    <h3>ÚNETE A NOSOTROS</h3>
+    DATE DE ALTA Y JUEGA CON NOSOTROS<br /><br />
+    USUARIO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <input type="text" name="usu1" id="idusu" size="20" /><br /><br />
+    <input type="button" value="ALTA" onclick="alta()" />
+    <br /><br />
+    <div>
+      <fieldset>
+        ULTIMOS USUARIOS QUE SE HAN UNIDO A NOSOTROS:
+        <div id="div1"></div>
+      </fieldset>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+ function aleatorio (min,max){
+ return Math.floor(Math.random()*(max - min +1)+min);
+ }
+function crear(){
+num=aleatorio(1,20);
+document.getElementById('idnum').innerHTML=num;
+nodo=document.getElementById('id1');
+if (nodo.hasChildNodes()==false || nodo.lastChild.innerHTML < num){ 
+// no tiene hijos  o es mayor que el último
+	li=document.createElement('li');
+	li.innerHTML=num;
+	nodo.appendChild(li);
+	return;
+	}
+for(i=0;i<nodo.childNodes.length;i++){
+	hijo=nodo.childNodes[i];
+	if (hijo.innerHTML==num){
+		//nodo.removeChild(hijo);
+		return;
+	}
+	else
+		if (hijo.innerHTML>num){
+			li=document.createElement('li');
+			li.innerHTML=num;
+			nodo.insertBefore(li,hijo);
+			break;
+			}
+	}
+}
+
+ </script>
+</head>
+<body>
+<input type="button" value="Generar Número" onclick="crear()"><span id="idnum"></span>
+<ol id="id1"></ol>
+</body>
+</html>

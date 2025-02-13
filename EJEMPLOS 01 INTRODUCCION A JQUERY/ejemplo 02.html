@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo con dos botones</title>
+		<script src="..\jquery-3.7.1.min.js"> </script>
+		<script>
+			$(document).ready( function() {
+				$("#uno").click( function(){
+					$("#caja").html('Has pulsado el <b>uno</b>');
+				
+				
+				});
+				$("#dos").click( function(){
+					$("#caja").html('Has pulsado el <b>dos</b>');
+									
+				});
+			} );
+		
+		</script>
+		
+	</head>
+	<body>
+		<div id="caja" style="padding: 10px; background-color: green; "> Pulsa un botón </div>
+		<br>
+		<input type="button" id="uno" value="Botón Uno" >
+		<input type="button" id="dos" value="Botón Dos" >
+	</body>
+</html>

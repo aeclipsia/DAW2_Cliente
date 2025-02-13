@@ -1,0 +1,26 @@
+[
+{
+"nombre": "Chikorita",
+"pokedex":"152",
+"comentarios": "Al luchar, Chikorita agita la hoja que tiene para mantener a raya al rival. Pero, al mismo tiempo, libera una suave fragancia que apacigua el encuentro y crea un ambiente agradable y de amistad.",
+"tipo":["planta"],
+"altura":"0,9 m",
+"peso":"6,4 kg"
+},
+{
+"nombre": "Cyndaquil",
+"pokedex":"155",
+"comentarios": "Cyndaquil se protege soltando llamas por el lomo. Cuando está enfadado, las llamas son fieras, pero, si está cansado, solo consigue echar algunas chispas que no llegan a cuajar en una completa combustión.",
+"tipo":["fuego"],
+"altura":"0,5 m",
+"peso":"7,9 kg"
+},
+{
+"nombre": "Totodile",
+"pokedex":"158",
+"comentarios": "Totodile tiene cuerpo pequeño, pero fuertes mandíbulas. A veces, piensa que solo está dando un mordisquito y hace unas heridas bastante considerables.",
+"tipo":["agua"],
+"altura":"0,6 m",
+"peso":"9,5 kg"
+}
+]

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+<style>
+.claseParrafo {color:red;}
+</style>
+<script>
+function crearClase(){
+document.getElementById('parrafo').setAttribute('class','claseParrafo');
+}
+function borrarClase(){
+document.getElementById('parrafo').removeAttribute('class');
+}
+
+function leerClase(){
+if(document.getElementById('parrafo').hasAttribute('class')){
+	alert(document.getElementById('parrafo').getAttribute('class'));
+	}
+else{
+	alert('No tiene clase');
+	}
+}			
+</script>
+</head>
+<body>
+<p id='parrafo'>El estilo de este párrafo está controlado por los botones</p>	
+<button type='button' onclick='crearClase();'>Crear clase</button>
+<button type='button' onclick='leerClase();'>Leer clase</button>
+<button type='button' onclick='borrarClase();'>Borrar clase</button>
+
+</body>
+</html>

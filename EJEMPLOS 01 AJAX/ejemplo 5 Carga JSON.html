@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/
+xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> </title>
+		 
+		<script type="text/javascript">
+		 
+			function descargaArchivo() {
+		// Obtener la instancia del objeto XMLHttpRequest		
+				peticion_http = new XMLHttpRequest();	
+		// Preparar la funcion de respuesta
+				peticion_http.onreadystatechange = muestraContenido;
+		// Realizar peticion HTTP
+				peticion_http.open('GET', 'frameworks.json', true);
+				peticion_http.send(null);
+			function muestraContenido() {
+				if(peticion_http.readyState == 4) {
+					if(peticion_http.status == 200) {
+						var arr = JSON.parse(peticion_http.responseText);
+						var out = "";
+						var i;
+						for(i = 0; i < arr.length; i++) {
+								out += '<a href="' + arr[i].url + '">' + arr[i].framework + '</a><br>';
+						}
+						document.getElementById("id1").innerHTML = out;
+		
+			 
+					}
+				}
+			}
+		}
+				
+</script>
+</head>
+<body onload="descargaArchivo()">
+	<div id="id1"> </div>
+</body>
+</html>

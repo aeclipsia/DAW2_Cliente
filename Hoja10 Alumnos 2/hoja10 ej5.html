@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DOM</title>
+    <link rel="stylesheet" href="main.css" />
+    <script type="text/JavaScript">
+        function añadirlista() {
+            lista = document.getElementsByTagName("li");
+            nuevoValor = document.getElementById("usu").value.trim();
+            if (nuevoValor === "") {
+              alert("El campo no puede estar vacío.");
+              document.getElementById("usu").focus();
+              return;
+            }
+            for (let i = 0; i < lista.length; i++) {
+              if (lista[i].innerHTML == nuevoValor) {
+                alert("El elemento ya existe en la lista.");
+                document.getElementById("usu").focus();
+                return;
+              }
+            }
+            listas = document.getElementById("ol1");
+            cosa = document.createElement("li");
+            cosa.innerHTML = nuevoValor;
+            /*se añade al final directamente*/
+            listas.appendChild(cosa);
+            /* para ponerlo bonito */
+            /*
+            document.getElementById("usu").value = "";
+            document.getElementById("usu").focus();
+            */
+          }
+      function quitarlista() {
+          lista = document.getElementsByTagName("li");
+          valor = document.getElementById("usu").value.trim();
+          for (let i = 0; i < lista.length; i++) {
+              if (lista[i].innerHTML == valor) {
+                  listas = document.getElementById("ol1");
+                  listas.removeChild(lista[i]);
+              }
+            }
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1>Realizando Conexiones</h1>
+      <form name="miformulario">
+        <label for="usu">Usuario:</label><br />
+        <input type="text" id="usu" size="15" /><br /><br />
+        <!--<label for="con">Contraseña:</label><br />
+        <input type="password" id="con" size="15" /><br /><br />
+      -->
+        <input type="button" value="Añadir" onclick="añadirlista()" />
+        <input type="button" value="Quitar" onclick="quitarlista()" />
+      </form>
+      <br />
+      <ol id="ol1">
+        <li>Pepe</li>
+        <li>Ana</li>
+      </ol>
+    </div>
+  </body>
+</html>

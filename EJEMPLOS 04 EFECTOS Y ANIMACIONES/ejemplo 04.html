@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script src="..\jquery-3.7.1.min.js"> </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("#button1").click(function(){
+    $("#div1").fadeToggle(1000,function(){
+								$("#div2").slideToggle(1000,function(){
+									$("#div3").toggle(1000)	})});
+										 
+    ;
+  });
+  });
+</script>
+</head>
+
+<body>
+<button id="button1">Con funciones tras cada animacion</button>
+<br><br>
+<div id="div1" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+<div id="div2" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+<div id="div3" style="width:80px;height:80px;display:none;background-color:blue;"></div><br>
+</body>
+</html>

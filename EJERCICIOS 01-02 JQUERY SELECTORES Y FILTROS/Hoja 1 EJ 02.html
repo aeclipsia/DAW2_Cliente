@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HOJA 1 Ejercicio 2</title>
+    <style>
+      #cuadro {
+        background: #000000;
+        display: none;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        color: #ff6000;
+        margin: 40px;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#mostrarocultar").click(slide);
+      });
+      function slide() {
+        $("#cuadro").slideToggle(1000);
+      }
+    </script>
+  </head>
+  <body>
+    <input
+      type="button"
+      id="mostrarocultar"
+      value="Mostrar / Ocultar"
+      style="font-size: 14px; cursor: pointer; margin: 15px; padding: 5px"
+    />
+    <div id="cuadro">
+      <br /><br />
+      AGGGG!!!!
+    </div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+ var n=1;
+  function añadir(){
+  var p=document.createElement('p');
+  var texto=document.createTextNode('Este párrafo no existía en el HTML original '+n);
+  p.appendChild(texto);
+  e=document.getElementsByTagName("div");
+  e[0].appendChild(p);
+  n++;
+  }
+  function eliminar(){
+	var p=document.getElementsByTagName('p')[0];
+	p.parentNode.removeChild(p);
+  }
+  function cambiar(){
+	var p1=document.getElementsByTagName('p')[0];
+	var p=document.createElement('p');
+    var texto=document.createTextNode('Este párrafo sustituye al anterior');
+	p.appendChild(texto);
+	p1.parentNode.replaceChild(p,p1);
+ }
+ function intercalar(){
+	var p1=document.getElementsByTagName('p')[1];
+	var p=document.createElement('p');
+    var texto=document.createTextNode('Este se intercala');
+	p.appendChild(texto);
+	p1.parentNode.insertBefore(p,p1);
+ }
+  </script>
+</head>
+<body>
+<input type="button" value="Añadir nodo" onclick="añadir()">
+  <input type="button" value="Elimina nodo" onclick="eliminar()">
+  <input type="button" value="Cambiar nodo" onclick="cambiar()">
+  <input type="button" value="Poner nodo entre 1º y 2º" onclick="intercalar()">
+  <p>Primer párrafo</p>
+  <p>Segundo párrafo</p>
+  <p>Tercer párrafo</p>
+  <div>
+  Esto es un div
+  </div>
+   <div>
+  Y esto es otro
+  </div>
+</body>
+</html>

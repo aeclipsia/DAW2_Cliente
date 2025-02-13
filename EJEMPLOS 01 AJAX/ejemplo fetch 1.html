@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/
+xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title></title>
+
+<script type="text/javascript">
+function cargar(){
+	let text='';
+	fetch('https://rickandmortyapi.com/api/character')
+ 		.then((response) => response.json())
+ 		.then((data) => { console.log(data);
+						for (i=0;i<data.results.length;i++)
+							text+=data.results[i].name+'<br>';
+						document.getElementById("id1").innerHTML=text;
+						});				
+					    
+	
+}			
+				
+</script>
+</head>
+<body onload="cargar()">
+	<div id="id1"> </div>
+</body>
+</html>

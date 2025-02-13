@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+<script src="..\jquery-3.7.1.min.js"> </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+$("#button1").click(function(){
+    $("#div1").show();
+    $("#div2").show("slow");
+    $("#div3").show(3000);
+ });
+$("#button2").click(function(){
+    $("div").hide(3000);
+   
+  });
+  $("#button3").click(function(){
+   $("div").toggle("slow");
+   
+  });
+  $("#button4").click(function(){
+    $("#div1").fadeIn();
+    $("#div2").fadeIn("slow");
+    $("#div3").fadeIn(3000);
+  });
+    $("#button5").click(function(){
+    $("#div1").fadeOut();
+    $("#div2").fadeOut("slow");
+    $("#div3").fadeOut(3000);
+  });
+    $("#button6").click(function(){
+      $("div").fadeToggle(3000);
+  });
+   $("#button7").click(function(){
+    $("#div1").fadeTo("slow",0.5);
+    $("#div2").fadeTo("slow",0.5);
+    $("#div3").fadeTo(3000,0.5);
+  });
+  $("#button8").click(function(){
+    $("#div1").slideDown();
+    $("#div2").slideDown("slow");
+    $("#div3").slideDown(3000);
+  });
+  $("#button9").click(function(){
+    $("#div1").slideUp();
+    $("#div2").slideUp("slow");
+    $("#div3").slideUp(3000);
+  });
+   $("#button10").click(function(){
+   $("#div1").slideToggle();
+   $("#div2").slideToggle("slow");
+   $("#div3").slideToggle(3000);
+  });
+   $("#button11").click(function(){
+   $("#div1").toggle(3000);
+   $("#div2").toggle(3000,"swing");
+   $("#div3").toggle(3000,"linear");
+  });
+});
+</script>
+</head>
+
+<body>
+<button id="button1">Mostrar show()</button>
+<button id="button2">Ocultar hide()</button>
+<button id="button3">Muestro/Oculto toggle()</button>
+<br><br>
+<button id="button4">Aparece fadeIn()</button>
+<button id="button5">Difumino fadeOut()</button>
+<button id="button6">Aparece/Difumino fadeToggle()</button>
+<button id="button7">Me pongo a 0.5 fadeTo()</button>
+<br><br>
+<button id="button8">Despliego slideDown()</button>
+<button id="button9">Pliego slideUp()</button>
+<button id="button10"> Pliego/despliego slideToggle()</button>
+<br><br>
+<button id="button11">Muestro/Oculto toggle() con distinto easing</button>
+<br><br>
+<div id="div1" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+<div id="div2" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+<div id="div3" style="width:80px;height:80px;display:none;background-color:blue;"></div>
+
+</body>
+</html>

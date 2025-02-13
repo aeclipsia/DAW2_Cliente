@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <style type="text/css">
+ body{
+   font-family:Arial,Helvetica,sans-serif;
+ }
+#div1{
+	width:900px;
+	height:370px;
+	margin-left:20px;
+	border: 2px black solid;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	}
+
+}
+ </style>
+<script>
+
+function comprobar(){ 
+}	
+ </script>
+</head>
+<body>
+<form name="form">
+<div id="div1">
+<h1>EXPRESIONES REGULARES</h1>
+<p>CAMPO 1: <input type="text" id="c1" size=15>  Empiezo y termino por letra mayúscula y lo demás son números o espacios </p> 
+<p>CAMPO 2: <input type="text" id="c2" size=15>  Soy como un número de teléfono, cada tres dígitos tengo un guión </p>  
+<p>CAMPO 3: <input type="text" id="c3" size=15>  Soy un número múltiplo de 10</p> 
+<p>CAMPO 4: <input type="text" id="c4" size=15>  Tengo alguna letra mayúscula, alguna minúscula y algún dígito. En total, entre 6 y 10 caracteres </p> 
+<br> <input type="button" value="Comprobar datos" onclick="comprobar()">
+<br>
+<div id="div2">
+</div>
+</div>
+</form> 
+</body>
+</html>

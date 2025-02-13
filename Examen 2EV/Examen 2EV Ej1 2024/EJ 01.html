@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CONTROL FORMULARIOS</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+      body {
+        font: "Trebuchet MS", sans-serif;
+        margin: 50px;
+      }
+      .demoHeaders {
+        margin-top: 2em;
+      }
+      .but {
+        width: 15px;
+        height: 15px;
+        border: 0px;
+      }
+    </style>
+    <script type="text/javascript">
+      pokemonData = "";
+      index = "";
+
+      function descargaArchivo() {
+        $("#uno").add().attr("onclick", "showPokemon(true)");
+        fetch("pokemon." + $("option:selected").val() + ".json")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error al obtener el archivo JSON");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            pokemonData = data;
+            showPokemon(false);
+          })
+          .catch((error) => {
+            document.getElementById("principal").innerHTML = error;
+          });
+      }
+      function showPokemon(bool) {
+        if (!bool) {
+          index = 0;
+        } else {
+          if (pokemonData.length == index + 1) {
+            index = 0;
+          } else {
+            index++;
+          }
+        }
+
+        tipos = "";
+
+        pokemonData[index].tipo.forEach((element, index) => {
+          tipos += element;
+          if (index != 1) {
+            tipos += " ";
+          }
+        });
+
+        $("#principal")
+          .empty()
+          .append(
+            $(
+              "<h4>Pokedex: " +
+                pokemonData[index].pokedex +
+                " " +
+                pokemonData[index].nombre +
+                "</h4>"
+            ),
+            $('<img src="pokemon2/' + pokemonData[index].nombre + '.png">'),
+            $("<p>" + pokemonData[index].comentarios + "</p>"),
+            $("<h4>Tipos: " + tipos + "</h4>")
+          );
+      }
+      function traerTXT() {
+        $.ajax({
+          url: "masinfo.js",
+          dataType: "script",
+          success: function (result) {},
+          error: function (xhr) {
+            alert(
+              "Se ha producido un error " + xhr.status + " " + xhr.statusText
+            );
+          },
+        });
+      }
+    </script>
+  </head>
+  <body onload="descargaArchivo()">
+    <h3>Pokemon</h3>
+
+    <select id="selGen" onchange="descargaArchivo()">
+      <option value="1GEN">1ª Generación</option>
+      <option value="2GEN">2ª Generación</option>
+      <option value="3GEN">3ª Generación</option>
+    </select>
+
+    <br /><br />
+
+    <input type="button" id="uno" value="AVANZAR" onclick="showPokemon(true)" />
+    <input type="button" id="dos" value="TRAER TXT" onclick="traerTXT()" />
+    <div id="principal"></div>
+  </body>
+</html>

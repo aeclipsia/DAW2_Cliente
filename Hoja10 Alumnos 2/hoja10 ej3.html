@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DOM</title>
+
+    <title>Ejemplo de un mostrador de diapositivas</title>
+    <style type="text/css">
+      body {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+      div {
+        width: 600px;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 20px;
+      }
+    </style>
+    <script type="text/javascript">
+      const imagenes = [
+        "pokemon/Bulbasaur.png",
+        "pokemon/Ivysaur.png",
+        "pokemon/Venusaur.png",
+        "pokemon/Charmander.png",
+        "pokemon/Charmeleon.png",
+        "pokemon/Charizard.png",
+        "pokemon/Squirtle.png",
+        "pokemon/Wartortle.png",
+        "pokemon/Blastoise.png",
+      ];
+      let indiceActual = -1;
+      function adelante() {
+        indiceActual++;
+        document.getElementById("fotos").innerHTML = imagenes[indiceActual];
+        mostrarImg();
+        //alert que no deje que baje si el num es menor q 0
+      }
+      function atras() {
+        indiceActual--;
+        document.getElementById("fotos").innerHTML = imagenes[indiceActual];
+        mostrarImg();
+        //alert que no deje que avance si es mayor que el length del array
+      }
+      function mostrarImg() {
+        foto = document.getElementById("fotos");
+        /* coge el div fotos */
+        img = document.createElement("img");
+        /*crea el elemento imagen */
+        img.src = imagenes[indiceActual];
+        //img.alt = "Imagen Pokémon";
+        /*Añade la imagen al contenedor*/
+        foto.appendChild(img);
+        li = document.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+          li[i].setAttribute("style", `color: black;`);
+        }
+        //ESTE BUCLE VALE EN EL EJ DEL DOM?
+        li[indiceActual].setAttribute("style", `color: orange;`);
+      }
+      function cargar() {
+        adelante();
+      }
+    </script>
+  </head>
+  <body onload="cargar()">
+    <div>
+      <ul>
+        <li>Bulbasaur</li>
+        <li>Ivysaur</li>
+        <li>Venusaur</li>
+        <li>Charmander</li>
+        <li>Charmeleon</li>
+        <li>Charizard</li>
+        <li>Squirtle</li>
+        <li>Wartortle</li>
+        <li>Blastoise</li>
+      </ul>
+      <input type="button" value="atras" onclick="atras()" />
+      <input type="button" value="adelante" onclick="adelante()" />
+    </div>
+    <div id="fotos"></div>
+  </body>
+</html>
+

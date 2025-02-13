@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <style type="text/css">
+      body {
+        text-align: center;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        font-weight: bold;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("button").click(function () {
+          $("div:eq(0)").animate({ top: "300px", left: "+=250px" }, 5000);
+          $("div:eq(1)").delay(2000).animate(
+            {
+              left: "250px",
+              opacity: "0.5",
+              height: "150px",
+              width: "150px",
+            },
+            3000
+          );
+          $("div:eq(2)")
+            .html("Hola :)")
+            .delay(7000)
+            .animate({ height: "300px", opacity: "0.4" }, "slow")
+            .animate({ width: "300px", opacity: "0.8" }, "slow")
+            .animate({ height: "100px", opacity: "0.4" }, "slow")
+            .animate({ width: "100px", opacity: "0.8" }, "slow")
+            .animate({ fontSize: "2em" }, "slow");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <button>Comenzar Animación</button>
+    <p>
+      Por defecto, todos los elementos HTML tienen una posición estática y no
+      pueden ser movidos. Para manipular la posición el elemento ha de tener la
+      propiedad CSS position a relative o absolute
+    </p>
+    <div
+      style="
+        background: #a569bd;
+        height: 100px;
+        width: 100px;
+        position: relative;
+      "
+    ></div>
+    <div
+      style="
+        background: #e74c3c;
+        height: 100px;
+        width: 100px;
+        position: relative;
+      "
+    ></div>
+    <div
+      style="
+        background: #2874a6;
+        height: 100px;
+        width: 100px;
+        position: relative;
+      "
+    ></div>
+  </body>
+</html>

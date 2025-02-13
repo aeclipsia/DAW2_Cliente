@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+function mostrar(){
+for (i=0;i<document.links.length;i++){
+	alert (document.links[i].href);
+	alert (document.links[i].innerHTML);
+ 	}
+}
+</script>
+</head>
+<body onload="mostrar()">
+<p>PRIMERO 
+ <br> <a href="http://www.google.es/"> Google </a> 
+ <br> <a href="http://www.elpais.es/"> El País </a> </p>
+No párrafo
+<p>SEGUNDO
+ <br> <a href="http://www.marca.es/"> Marca </a> 
+
+</body>
+</html>

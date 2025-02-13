@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EXAMEN EJERCICIO 1</title>
+
+    <link rel="stylesheet" type="text/css" href="stylepoli.css" />
+  </head>
+  <script>
+    let tar = 0;
+    function calcularPrecio() {
+//mirar siempre el is nan
+      if (
+        Number(document.getElementById("dd").value) < 1 ||
+        Number(document.getElementById("dd").value) > 31 ||
+        Number(document.getElementById("mm").value) < 1 ||
+        Number(document.getElementById("mm").value) > 12 ||
+        Number(document.getElementById("aaaa").value) < 1900
+      ) {
+        alert("ERROR FECHAS");
+        return;
+      }
+      let hoy = new Date();
+      let fecha = new Date(
+        Number(document.getElementById("aaaa").value),
+        Number(document.getElementById("mm").value),
+        Number(document.getElementById("dd").value)
+      );
+      if (fecha > hoy) {
+        alert("la fecha es mayor a la del sistema");
+        return;
+      }
+      edad = calcularEdad(fecha);
+      if (edad < 14 || edad > 80) {
+        alert("error tienes que estar entre 14 y 80");
+      }
+      //------------------------------------------------------------------
+      let precio = 0;
+      if (tar == 1) {
+        precio = 20;
+      }
+      if (tar == 2) {
+        precio = 30;
+      }
+      if (tar == 3) {
+        precio = 40;
+      }
+      if (tar == 4) {
+        precio = 30;
+      }
+      if (tar == 5) {
+        precio = 60;
+      }
+
+      let boton = document.querySelector(
+        'input[name="Empadronado"]:checked'
+      ).value;
+      //para sacar el valor de un radio button
+      if (boton == 1) {
+        precio = precio / 2;
+      } else {
+        if (edad < 18) {
+          precio = precio * 0.8;
+        }
+        if (edad > 65) {
+          precio = precio * 0.7;
+        }
+        if (
+          document.querySelector('input[name="FamiliaNumerosa"]:checked')
+            .value == 1
+        ) {
+          precio = precio - 5;
+        }
+      }
+      if (precio <= 0) {
+        alert("selecciona una tarifa");
+      } else {
+        document.getElementById("precio").value = precio;
+        document.getElementById("id33").style.display = "flex";
+      }
+    }
+    function calcularEdad(fechaNacimiento) {
+      //si da err poner const
+      let fechaNac = new Date(fechaNacimiento);
+      let fechaActual = new Date();
+      // Calcular la diferencia en años
+      let edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+      // Ajustar la edad si el cumpleaños aún no ha ocurrido este año
+      let mesActual = fechaActual.getMonth();
+      let diaActual = fechaActual.getDate();
+      let mesNacimiento = fechaNac.getMonth();
+      let diaNacimiento = fechaNac.getDate();
+      if (
+        mesActual < mesNacimiento ||
+        (mesActual === mesNacimiento && diaActual < diaNacimiento)
+      ) {
+        edad--;
+      }
+      document.getElementById("edad").value = edad;
+      return edad;
+    }
+    //
+    //
+    //COMO HAGFO LO DE ABAJO CON UN BUCLE?
+    //
+    //
+    function marcar(t) {
+      //   todas = document.getElementsByTagName("td");
+      //   for (i = 0; i < todas.lenght; i++) {
+      //     todas;
+      //   }
+      document.getElementById("1").style.background = "white";
+      document.getElementById("2").style.background = "white";
+      document.getElementById("3").style.background = "white";
+      document.getElementById("4").style.background = "white";
+      document.getElementById("5").style.background = "white";
+
+      t.style.background = "green";
+      tar = Number(t.id);
+    }
+    function cambiar(event, campo) {
+      if (event.type === "mouseover") {
+        campo.style.backgroundColor = "#81DAF5";
+        campo.style.fontWeight = "bold";
+      } else if (event.type === "mouseout") {
+        campo.style.backgroundColor = "#FAFAFA";
+        campo.style.fontWeight = "normal";
+      }
+    }
+    function validar() {
+      const f1 = /^[A-M]*(\d{2,})[A-M]*$/;
+      const f2 = /^([A-Z]\.\d){2,}$/;
+      val1 = document.getElementById("val1").value;
+      val2 = document.getElementById("val2").value;
+
+      if (f1.test(val1) == false || val1.length < 6 || val1.length > 8) {
+        alert("esta Mal cad1");
+      } else if (f2.test(val2) == false) {
+        alert("esta Mal cad2");
+      } else {
+        let wndw = window.open(
+          " ",
+          "ventana",
+          "width=300,height=200,top=200,left=300"
+        );
+        wndw.document.write("Nos pondremos en contacto");
+        window.setTimeout(function () {
+          wndw.close();
+        }, 5000);
+      }
+    }
+  </script>
+  <body>
+    <h1>POLIDEPORTIVO LEGANES SPORT</h1>
+    <div id="central">
+      <fieldset id="pos1">
+        Calculamos el precio mensual de tu carnet como socio en nuestro
+        polideportivo. Indica tu fecha de nacimiento y el uso que harías de él.
+      </fieldset>
+    </div>
+    <br />
+    <div id="abajo">
+      <form name="form1">
+        <label>Fecha nacimiento</label>
+        <input
+          type="text"
+          id="dd"
+          placeholder="dd"
+          style="text-align: center"
+          size="3"
+        />
+        <input
+          type="text"
+          id="mm"
+          placeholder="mm"
+          style="text-align: center"
+          size="3"
+        />
+        <input
+          type="text"
+          id="aaaa"
+          placeholder="aaaa"
+          style="text-align: center"
+          size="5"
+        />
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp EDAD
+        <input type="text" id="edad" size="3" readonly />
+
+        <label>Empadronado en Leganés </label>
+        <input type="radio" value="1" name="Empadronado" id="Empadronado" />SÍ
+        <input
+          type="radio"
+          value="2"
+          name="Empadronado"
+          id="Empadronado"
+          checked
+        />NO
+        <label>Familia numerosa </label>
+        <input
+          type="radio"
+          value="1"
+          name="FamiliaNumerosa"
+          id="FamiliaNumerosa"
+        />SÍ
+        <input
+          type="radio"
+          value="2"
+          name="FamiliaNumerosa"
+          id="FamiliaNumerosa"
+          checked
+        />NO
+        <br />
+        <label>TARIFAS:Clica la que te interesa</label>
+        <table id="tabla">
+          <tr>
+            <td onclick="marcar(this)" id="1">
+              1 hora semanal de L a V <b>20€</b>
+            </td>
+            <td onclick="marcar(this)" id="2">
+              2 horas semanales de L a V <b>30€</b>
+            </td>
+            <td onclick="marcar(this)" id="3">
+              4 horas semanales de L a V <b>40€</b>
+            </td>
+            <td onclick="marcar(this)" id="4">Fines de Semana <b>30€</b></td>
+            <td onclick="marcar(this)" id="5">
+              Entrada libre todos los días <b>60€</b>
+            </td>
+          </tr>
+        </table>
+        <hr />
+        <label>Descuentos:</label>
+        Menores de 18 años: 20%
+        <br />Mayores de 65 años: 30% <br />Familia numerosa: 5€
+        <br />Empadronado en Leganés: 50% (este descuento anula los anteriores)
+        <br /><br />
+        <input
+          type="button"
+          value="CALCULAR PRECIO"
+          onclick="calcularPrecio()"
+        />
+        <input type="text" id="precio" size="2" readonly />
+      </form>
+    </div>
+    <div id="id33" style="display: none">
+      <form name="form2">
+        <label>Teléfono</label>
+        <input
+          type="text"
+          id="telefono"
+          size="20"
+          onmouseover="cambiar(event, this)"
+          onmouseout="cambiar(event, this)"
+        />
+        <br />No soy una máquina (Teclea un texto de entre 6 y 8 caracteres con
+        al menos 2 números seguidos y el resto letras de la A a la M)
+        <input
+          type="text"
+          id="val1"
+          size="20"
+          onmouseover="cambiar(event, this)"
+          onmouseout="cambiar(event, this)"
+        />
+        <br />Vale, el anterior no me sale, pero no soy una máquina (Teclea una
+        secuencia de letra.número al menos 2 veces L.9L.9 )
+        <input
+          type="text"
+          id="val2"
+          size="20"
+          onmouseover="cambiar(event, this)"
+          onmouseout="cambiar(event, this)"
+        />
+        <br />
+        <input type="button" value="ENVIAR DATOS" onclick="validar()" />
+      </form>
+    </div>
+  </body>
+</html>

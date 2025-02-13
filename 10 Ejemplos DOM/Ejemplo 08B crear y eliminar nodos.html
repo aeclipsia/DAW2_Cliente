@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+<script>
+var n=1;
+function añadir(){
+  var nuevo=document.createElement('p');
+  nuevo.innerHTML='Este párrafo no existía en el HTML original '+n;
+  padre=document.getElementById("principal");
+  padre.appendChild(nuevo);
+  n++;
+  }
+function eliminar(){
+	// borra siempre el primer parrafo
+	var pborrar=document.getElementsByTagName('p')[0];
+	padre=pborrar.parentNode;
+	padre.removeChild(pborrar);
+	// busca el padre de ese párrafo y le dice que borre el hijo
+		
+  }
+  function cambiar(){
+	var pReemplazo=document.getElementsByTagName('p')[0];
+	var pCreo=document.createElement('p');
+    pCreo.innerHTML='Este párrafo sustituye al anterior';
+	padre=pReemplazo.parentNode;
+	padre.replaceChild(pCreo,pReemplazo);
+ }
+ function intercalar(){
+	var pSeQuedaDetras=document.getElementsByTagName('p')[1];
+	var pCreo=document.createElement('p');
+    pCreo.innerHTML='Este se intercala';
+	padre=pSeQuedaDetras.parentNode;
+	padre.insertBefore(pCreo,pSeQuedaDetras);
+ }
+  </script>
+</head>
+<body>
+<input type="button" value="Añadir nodo al final del primer div" onclick="añadir()">
+<input type="button" value="Elimina nodo (siempre el primer parrafo)" onclick="eliminar()">
+<input type="button" value="Cambiar nodo (cambia el primer párrafo)" onclick="cambiar()">
+<input type="button" value="Poner nodo entre 1º y 2º" onclick="intercalar()">
+<div id="principal">
+	<p>Primer párrafo</p>
+	<p>Segundo párrafo</p>
+	<p>Tercer párrafo</p>
+ </div>
+  <div id="otro">
+	<p>Primer párrafo de otro</p>
+	<p>Segundo párrafo de otro </p>
+	<p>Tercer párrafo de otro</p>
+  </div>
+ </body>
+</html>

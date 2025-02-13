@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      #divAnimado,
+      #divAnimado2,
+      #divAnimado3 {
+        float: left;
+        width: 150px;
+        height: 150px;
+        margin-left: 50px;
+        margin-top: 50px;
+        background-color: #0000ff;
+      }
+
+      #divAnimado2 {
+        background-color: green;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $("#boton").click(function () {
+          $("#divAnimado , #divAnimado3").animate(
+            { marginTop: "250px", rotate: "180deg" },
+            "fast"
+          );
+          $("#divAnimado2")
+            .delay(500)
+            .animate({ marginLeft: "-150px", rotate: "180deg" }, "fast");
+          $("#divAnimado2")
+            .delay(500)
+            .animate({ marginTop: "250px", rotate: "360deg" }, "fast");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="divAnimado"></div>
+
+    <div id="divAnimado2"></div>
+
+    <div id="divAnimado3"></div>
+    <input type="button" id="boton" value="Iniciar Animacion" />
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-3.7.1.min.js"> </script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $.ajax({url: "saludo.txt",
+				success: function(result){
+					$("#h2").html(result);
+				},
+				error: function(xhr){
+						alert("Se ha producido un error " + xhr.status + " " + xhr.statusText);
+					}});
+    });
+});
+</script>
+</head>
+<body>
+
+<h2 id="h2">EJEMPLO JQUERY Y AJAX</h2>
+<img src="caracol.gif">
+<button>Traer un texto</button>
+
+</body>
+</html>

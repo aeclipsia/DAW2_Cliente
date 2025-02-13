@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+function comprobar(){
+nodoDiv=document.getElementById("id1");
+console.log('Nodo div tiene hijos ' + nodoDiv.hasChildNodes()); // true o false según tenga o no nodos hijos
+hijos=nodoDiv.childNodes;  // son los nodos hijos de nodoDiv
+console.log('Tiene ' +hijos.length); // cuantos tiene
+console.log('Primero '+ nodoDiv.firstChild.innerHTML); // es el hijo mayor o primero
+console.log('Último '+nodoDiv.lastChild.innerHTML);  // es el hijo menor o último  
+p=document.getElementById("p2");
+console.log('Hermano izdo de p2 '+p.previousSibling.innerHTML); // es el hermano izquierdo o anterior de p
+console.log('Hermano drcho de p2 '+p.nextSibling.innerHTML); // es el hermano derecho o siguiente de p
+console.log('Padre de p2 '+p.parentNode.id); // es el nodo padre de p
+}
+</script>
+</head>
+<body onload="comprobar()">
+<div id="id1"><p> Primero </p><p id="p2"> Segundo </p><p> Tercero </p></div>
+</body>
+</html>

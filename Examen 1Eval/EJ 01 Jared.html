@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>EXAMEN EJERCICIO 1</title>
+    <style type="text/css">
+      body {
+        font-family: "Garamond", sans-serif;
+        font-size: 18px;
+      }
+      #div1 {
+        width: 250px;
+        margin: auto;
+      }
+      h1 {
+        text-align: center;
+        font-size: 20pt;
+      }
+      table {
+        background-color: #f3e0b6;
+        text-align: center;
+        width: 250px;
+        border: 1px solid #83682b;
+      }
+      td {
+        border: 1px solid #83682b;
+      }
+      .producto {
+        background-color: #f8b00d;
+      }
+    </style>
+    <script type="text/javascript">
+      function cargar() {
+        dimensiones = Number(
+          prompt("¿Cuántas dimensiones y columnas quieres?")
+        );
+        //pedir que sea un número entre 3 y 9
+        while (dimensiones < 3 || dimensiones > 9 || isNaN(dimensiones)) {
+          alert("Debe ser un número entre 3 y 9");
+          dimensiones = Number(
+            prompt("¿Cuántas dimensiones y columnas quieres?")
+          );
+        }
+        main();
+      }
+
+      function generar() {
+        //numero aleatorio entre 1 y 5. Floor para truncar, * 5 para que sea entre 0 y 4, + 1 para ajustar que sea entre 1 y 5
+        return Math.floor(Math.random() * 5 + 1);
+      }
+
+      function restar(elemento) {
+        currentValue = elemento.textContent;
+        elemento.textContent = currentValue - 1; //restar 1 a su contenido
+
+        recalcular(); //recalcular el producto
+
+        if (elemento.textContent == 0) {
+          elemento.style.backgroundColor = "gray"; //celda en gris
+          elemento.removeAttribute("onclick"); //deshabilitar onclick
+        }
+      }
+
+      function recalcular() {
+        tr = document.getElementsByTagName("tr");
+        Array.from(tr).forEach((fila) => {
+          producto = 1;
+          Array.from(fila.childNodes).forEach((element) => {
+            if (element == fila.lastChild) {
+              fila.lastChild.textContent = producto;
+            } else {
+              producto = element.textContent * producto;
+            }
+          });
+        });
+      }
+      function main() {
+        //declarar los números
+        tablaDatos = new Array(dimensiones);
+        for (let i = 0; i < dimensiones; i++)
+          tablaDatos[i] = new Array(dimensiones);
+
+        for (let i = 0; i < dimensiones; i++)
+          for (let j = 0; j < dimensiones; j++) {
+            tablaDatos[i][j] = generar();
+          }
+
+        //pintar
+        table = document.createElement("table");
+        for (let i = 0; i < dimensiones; i++) {
+          producto = 1;
+          let tr = document.createElement("tr");
+          for (let j = 0; j < dimensiones + 1; j++) {
+            if (j == dimensiones) {
+              let td = document.createElement("td");
+              td.textContent = producto;
+              td.setAttribute("class", "producto");
+              tr.appendChild(td);
+            } else {
+              let td = document.createElement("td");
+              td.textContent = tablaDatos[i][j];
+              producto = producto * td.textContent;
+              td.setAttribute("onclick", "restar(this)");
+              tr.appendChild(td);
+            }
+          }
+          table.appendChild(tr);
+        }
+        document.getElementById("div1").appendChild(table);
+      }
+    </script>
+  </head>
+  <body onload="cargar()">
+    <h2>1ª Evaluación</h2>
+    <h3>EJERCICIO 1</h3>
+    <div id="div1"></div>
+  </body>
+</html>

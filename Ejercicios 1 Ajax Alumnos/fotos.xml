@@ -1,0 +1,14 @@
+<FOTOS>
+<FOTO>
+<IMAGEN>Mi gato</IMAGEN>
+<SRC>gato.jpg</SRC>
+</FOTO>
+ <FOTO>
+<IMAGEN>Mi perro</IMAGEN>
+<SRC>perro.jpg</SRC>
+</FOTO>
+<FOTO>
+<IMAGEN>El sol</IMAGEN>
+<SRC>sol.jpg</SRC>
+</FOTO>
+</FOTOS>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+		<title>Más ejemplos</title>
+		<style>
+			p {
+				font-family:Verdana,sans-serif;
+				font-size:14pt;
+			}
+			
+		</style>
+		<script src="..\jquery-3.7.1.min.js"> </script>
+		<script>
+			$(document).ready( function() {
+			 	 alert("Tenemos "+$("p").length+" parrafos");
+				 alert("Tenemos "+$(":input").length+" inputs");
+				 alert("Y botones son "+$(":button").length);
+				 
+				 alert("El valor del primer botón es "+$(":button").eq(0).val());
+								 
+				 alert("El html del tercer párrafo es "+$("p").eq(2).html()+" pero lo voy a cambiar");
+				 $("p").eq(2).html("CAMBIADO");
+				 
+				 alert("Y si clicas en cualquier párrafo, lo oculto");
+				 $("p").click(function(){
+					$(this).hide();
+					});
+		  
+				 
+			} );
+		
+		</script>
+		
+	</head>
+	<body>
+		<input type="button" id="pintar" value="PINTAR">
+		<input type="button" id="ocultar" value="OCULTAR">
+		<input type="button" id="mostrar" value="MOSTRAR">
+		<input type="button" id="varios" value="VARIOS">
+		<input type="button" id="otro" value="OTRO">
+		<p> UNO </p>
+		<p> DOS </p>
+		<p> TRES </p>
+		<p> CUATRO </p>
+	</body>
+</html>

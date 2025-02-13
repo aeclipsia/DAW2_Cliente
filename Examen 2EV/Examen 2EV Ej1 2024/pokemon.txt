@@ -1,0 +1,50 @@
+﻿[
+{
+"nombre": "Bulbasaur",
+"pokedex":"001",
+"comentarios": "A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.",
+"tipo":["planta","veneno"],
+"altura":"0,7 m",
+"peso":"6,9 kg"
+},
+{
+"nombre": "Ivysaur",
+"pokedex":"002",
+"comentarios": "Este Pokémon lleva un bulbo en el lomo y, para poder con su peso, tiene unas patas y un tronco gruesos y fuertes. Si empieza a pasar más tiempo al sol, será porque el bulbo está a punto de hacerse una flor grande.",
+"tipo":["planta","veneno"],
+"altura":"1 m",
+"peso":"13 kg"
+},
+{
+"nombre": "Venusaur",
+"pokedex":"003",
+"comentarios": "Venusaur tiene una flor enorme en el lomo que, según parece, adquiere unos colores muy vivos si está bien nutrido y le da mucho el sol. El aroma delicado de la flor tiene un efecto relajante en el ánimo de las personas.",
+"tipo":["planta","veneno"],
+"altura":"2 m",
+"peso":"100 kg"
+},
+{
+"nombre": "Charmander",
+"pokedex":"004",
+"comentarios": "La llama que tiene en la punta de la cola arde según sus sentimientos. Llamea levemente cuando está alegre y arde vigorosamente cuando está enfadado.",
+"tipo":["fuego"],
+"altura":"0,6 m",
+"peso":"8,5 kg"
+},
+{
+"nombre": "Charmeleon",
+"pokedex":"005",
+"comentarios": "Charmeleon no tiene reparo en acabar con su rival usando las afiladas garras que tiene. Si su enemigo es fuerte, se vuelve agresivo, y la llama que tiene en el extremo de la cola empieza a arder con mayor intensidad tornándose azulada.",
+"tipo":["fuego"],
+"altura":"1,1 m",
+"peso":"19 kg"
+},
+{
+"nombre": "Charizard",
+"pokedex":"006",
+"comentarios": "Charizard se dedica a volar por los cielos en busca de oponentes fuertes. Echa fuego por la boca y es capaz de derretir cualquier cosa. No obstante, si su rival es más débil que él, no usará este ataque.",
+"tipo":["fuego"],
+"altura":"1,7 m",
+"peso":"90,5 kg"
+}
+]

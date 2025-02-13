@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+function ver(){
+let nodobody=document.body;
+let nodohead=document.head;
+alert("body : tipo "+nodobody.nodeType+" nombre "+nodobody.nodeName); // tipo 1 nombre BODY
+alert("head : tipo "+nodohead.nodeType+" nombre "+nodohead.nodeName); // tipo 1 nombre HEAD
+
+}
+</script>
+<title>Página sencilla</title>
+</head>
+<body onload="ver()">
+<h3>Conociendo el DOM </h3>
+<p>Esta página es <b>muy sencilla</b></p>
+</body>
+</html>

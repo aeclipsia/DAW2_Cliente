@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/
+xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>Saludando con AJAX</title>
+		<style>
+			#fichero{
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: bold;
+				color: #600;
+				background-color: #CCC;
+				padding: 25px;
+				width: 300px;
+				margin-right: auto;
+				margin-left: auto;
+				border: medium outset #666;
+				height: 300px;
+				border-top-right-radius:2em;
+				border-bottom-left-radius:2em;
+			
+			}
+		</style>
+		<script type="text/javascript">
+		function comienza(){
+		cont=0;
+		a=window.setInterval(function(){
+		document.getElementById("id1").innerHTML=cont;
+		cont++;
+		},1000);
+		
+		}
+			function descargaArchivo() {
+				fetch('saludo.txt')
+ 					.then(response => {
+    					if (!response.ok) {
+    					 	throw new Error('Error al obtener el archivo');
+   						 }
+						// alert(response.text())
+   						return response.text(); // Convierte la respuesta en texto
+  					})
+  					.then(data => {
+  						  document.getElementById("fichero").innerHTML=data; // Aquí tienes el contenido del archivo .txt
+  						})
+  					.catch(error => {
+						document.getElementById("fichero").innerHTML=error;
+ 					 });
+					}
+
+
+			
+				
+</script>
+</head>
+<body onload="comienza()">
+	<div id="fichero"></div>
+	<input type="button" value="Cargar Fichero" onclick="descargaArchivo()">
+	<div id="id1"> </div>
+	<div id="id2"> </div>
+</body>
+</html>

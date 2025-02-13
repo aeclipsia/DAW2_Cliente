@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mi primer ejemplo usando jQuery</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        alert("Este documento tiene " + $("a").length + " enlaces");
+
+        $("#ocultar").click(function () {
+          $("a").hide();
+        });
+
+        $("#mostrar").click(function () {
+          $("a").show();
+        });
+
+        $("a").click(function () {
+          alert($(this).attr("href"));
+          alert("Querías " + $(this).html() + " pero te mando a otro sitio");
+          $(this).attr("href", "https://www.youtube.com/");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="button" id="ocultar" value="Ocultar enlaces" />
+    <input type="button" id="mostrar" value="Mostrar enlaces" />
+    <div>
+      <a href="http://www.google.es">Ir a Google</a>
+      <br /><br />
+      <a href="http://www.elpais.es">Ir a El País</a>
+    </div>
+  </body>
+</html>

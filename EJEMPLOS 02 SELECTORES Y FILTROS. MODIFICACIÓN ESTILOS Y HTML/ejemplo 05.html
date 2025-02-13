@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo 05</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        alert($("h1").css("font-size"));
+        alert($("p").css("font-size"));
+
+        $("#capa").mouseenter(function () {
+          $("#mensaje").css({ display: "block", "font-size": "50px" });
+        });
+
+        $("#capa").mouseleave(function () {
+          $("#mensaje").css("display", "none");
+        });
+        $("h1").click(function () {
+          alert($(this).css("font-size"));
+          $(this).css("font-size", "100px");
+        });
+        $("p").click(function () {
+          alert($("p").css("font-size"));
+          alert($(this).css("font-size"));
+          $(this).css({
+            "font-size": "+=15px",
+            paddingTop: "+=20px",
+            color: "red",
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Probando css</h1>
+
+    <p>Aquí también</p>
+    <p>segundo parrafo</p>
+    <p>tercero</p>
+    <div
+      id="capa"
+      style="
+        padding: 10px;
+        background-color: #facc2e;
+        color: #b40404;
+        font-weight: bold;
+      "
+    >
+      PON EL RATÓN AQUÍ
+    </div>
+    <br />
+    <div id="mensaje" style="display: none">
+      HAS ENTRADO EN LA CAPA.<br />AHORA SAL
+    </div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Untitled Document</title>
+	<style type="text/css">
+			input {
+				font-family: Verdana, Geneva, sans-serif;
+				
+			}
+			.valor {
+				margin-left: 35px;
+			}
+			input {
+				font-family: Verdana, Geneva, sans-serif;
+			}
+			.resultado {
+				background-color: #999;
+				margin-left: 10px;
+			}
+			#form1 p #operar {
+				margin-left: 25px;
+			}
+			div {
+				width: 400px;
+				margin-right: auto;
+				margin-left: auto;
+				font-family: Verdana, Geneva, sans-serif;
+			}
+			#formulario {
+				border: 2px outset #333;
+				padding-left: 25px;
+				margin-top: 50px;
+				font-weight: bold;
+			}
+			#titulo {
+				text-align: center;
+			}
+			body {
+				background-color: #CCC;
+			}
+	</style>
+	<script src="jquery-3.7.1.min.js"> </script>
+
+	
+	<script>
+		$(document).ready( function(){
+			$("#cargar").click( realizarProceso);
+			var parametros;
+			function realizarProceso(){
+				 			
+			$.ajax( {
+					url: 'discos.xml',
+					type: 'get',
+					beforeSend: function () {
+                        $("#demo").html("Procesando, espere por favor...");
+	                },
+					success: function (request){
+								xmlDoc = request;
+								txt = "";
+								x = xmlDoc.getElementsByTagName("ARTIST");
+								for (i = 0; i < x.length; i++) {
+									txt = txt + x[i].childNodes[0].nodeValue + "<br>";
+								}
+								document.getElementById("demo").innerHTML = txt;
+							},
+					error: function(xhr){
+						alert("Se ha producido un error " + xhr.status + " " + xhr.statusText);
+					},
+					complete: function(xhr){
+						$("#info").html("Se ha completado la petición " + xhr.status + " " + xhr.statusText);
+					}
+		
+			});
+		
+		};
+		
+		});
+		
+	
+	</script>
+</head>
+
+<body>
+<div id="titulo"> <h1> EJEMPLO JQUERY Y AJAX</h1> </div>
+<input type="button" value="Cargar Discos" id="cargar">
+<div id="demo">
+</div>
+<div id="info">
+</div>
+</body>
+</html>

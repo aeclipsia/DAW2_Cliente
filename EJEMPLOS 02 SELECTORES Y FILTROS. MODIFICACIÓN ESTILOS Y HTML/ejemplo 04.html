@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo 04</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        if ($("p").is(":hidden")) alert("hay párrafos ocultos");
+        if ($("div").is(":hidden")) alert("hay divs ocultos");
+        if ($("#OK").is(":checked")) alert("hay checks marcados");
+      });
+    </script>
+  </head>
+  <body>
+    <p>Párrafo Uno</p>
+    <p>Párrafo Dos</p>
+    <p style="display: none">Parrafo Tres display:none.</p>
+    <div style="visibility: hidden">Div visibility:hidden</div>
+    <input type="checkbox" id="OK" checked /> TODO OK
+  </body>
+</html>

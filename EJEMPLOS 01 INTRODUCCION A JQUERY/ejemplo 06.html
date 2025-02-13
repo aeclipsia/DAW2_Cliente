@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+		<title>Ejemplo con evento de ratón</title>
+		<script src="..\jquery-3.7.1.min.js"> </script>
+		<script>
+			$(document).ready( function(){
+				$("#capa").mouseenter( function(){
+					$("#mensaje").css({'display':'block',
+									   'font-size':'50px'});				
+					
+				});
+			
+				$("#capa").mouseleave( function(){
+					$("#mensaje").css("display","none");
+					
+				
+				});
+			
+			
+			});
+		</script>
+		
+	</head>
+	<body>
+		<div id="capa" style="padding: 10px; background-color: #FACC2E; color:#B40404; font-weight:bold "> PON EL RATÓN AQUÍ </div>
+		<br>
+		<div id="mensaje" style="display:none;"> HAS ENTRADO EN LA CAPA.<br>AHORA SAL </div>		
+		
+	</body>
+</html>

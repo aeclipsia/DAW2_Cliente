@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RegExp Tester</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #161616;
+      }
+      #result,
+      #matchVisualization {
+        margin-top: 20px;
+        color: #f4f4f4;
+      }
+      h1 {
+        color: #f4f4f4;
+      }
+      input {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 0.5rem;
+        border: solid 0.1rem black;
+      }
+      #testBtn {
+        padding: 0.8rem 1rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: rgb(89, 75, 139);
+        color: #f4f4f4;
+      }
+      .match {
+        background-color: green;
+        color: white;
+        padding: 2px;
+        border-radius: 0.4rem;
+      }
+      .non-match {
+        background-color: lightgray;
+        border-radius: 0.4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>RegExp Tester</h1>
+    <input id="pattern" placeholder="Pattern (e.g. /\\d+/g)" />
+    <input id="testString" placeholder="Test String" />
+    <button id="testBtn">Test</button>
+    <div id="result"></div>
+    <div id="matchVisualization"></div>
+
+    <script>
+      document.getElementById("testBtn").addEventListener("click", function () {
+        const patternInput = document.getElementById("pattern").value;
+        const testString = document.getElementById("testString").value;
+        const resultDiv = document.getElementById("result");
+        const visualDiv = document.getElementById("matchVisualization");
+
+        try {
+          // Parse pattern and flags
+          const matches = patternInput.match(/^\/(.+)\/([gimuy]*)$/);
+          const pattern = matches ? matches[1] : patternInput;
+          const flags = matches ? matches[2] : "g";
+
+          const regex = new RegExp(pattern, flags);
+          const foundMatches = testString.match(regex) || [];
+
+          // Display results
+          resultDiv.innerHTML =
+            `Matches: ${foundMatches.length}<br>` +
+            `Matched Values: ${foundMatches.join(", ")}`;
+
+          // Visualize matches
+          let visualization = "";
+          let lastIndex = 0;
+          let match;
+          regex.lastIndex = 0;
+
+          while ((match = regex.exec(testString)) !== null) {
+            visualization +=
+              `<span class="non-match">${testString.slice(
+                lastIndex,
+                match.index
+              )}</span>` + `<span class="match">${match[0]}</span>`;
+            lastIndex = regex.lastIndex;
+          }
+
+          visualization += `<span class="non-match">${testString.slice(
+            lastIndex
+          )}</span>`;
+          visualDiv.innerHTML = visualization;
+        } catch (error) {
+          resultDiv.innerHTML = `Error: ${error.message}`;
+          visualDiv.innerHTML = "";
+        }
+      });
+    </script>
+  </body>
+</html>

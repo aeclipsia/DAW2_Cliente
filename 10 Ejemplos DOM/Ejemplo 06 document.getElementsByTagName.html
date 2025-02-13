@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+ 
+<script>
+function colorear(){
+var parrafos=document.getElementsByTagName("p");
+for (i=0;i<parrafos.length;i++)
+	parrafos[i].style.color = "orange";
+}
+function enlaces(){
+var parrafo=document.getElementsByTagName("p")[0];
+var enlaces=parrafo.getElementsByTagName("a");
+for (i=0;i<enlaces.length;i++)
+	alert(enlaces[i].innerHTML);
+}
+</script>
+</head>
+<body>
+<p>PRIMERO 
+ <br> <a href="http://www.google.es/"> Google </a> 
+ <br> <a href="http://www.elpais.es/"> El País </a> </p>
+No párrafo
+<p>SEGUNDO
+ <br> <a href="http://www.marca.es/"> Marca </a> 
+</p>
+No párrafo<br>
+No párrafo
+<p>TERCERO</p>
+<input type="button" value="Colorear párrafos" onclick="colorear()"><br><br>
+<input type="button" value="Enlaces primer párrafo" onclick="enlaces()">
+</body>
+</html>

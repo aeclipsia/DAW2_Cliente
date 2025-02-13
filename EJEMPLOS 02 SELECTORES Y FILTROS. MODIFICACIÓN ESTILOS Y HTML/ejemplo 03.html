@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo 03</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#boton").click(function () {
+          $("p:first-child").css("background-color", "lightgrey"); // de los párrafos los que son hijos primeros de alguien
+          $("h3:last-child").css("background-color", "yellow"); // de los h3 los que son hijos últimos de alguien
+          $("h3:only-child").css("color", "red"); // de los h3 los que son hijos únicos de alguien
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="button" value="Ejecutar" id="boton" />
+    <br /><br />
+    <div>
+      DIV 1
+      <p>Párrafo Uno</p>
+      <p>Párrafo Dos</p>
+      <h3>Cabecera</h3>
+      <p>Párrafo Tres</p>
+      <p>Párrafo Cuatro</p>
+      <h3>Otra Cabecera</h3>
+      <p>Párrafo Cinco</p>
+    </div>
+    <div>
+      DIV 2
+      <p>Párrafo Seis</p>
+      <h3>Ultima Cabecera</h3>
+    </div>
+    <div>
+      DIV 3
+      <h3>Hijo único</h3>
+    </div>
+    <div>
+      DIV 4
+      <h3>En este el párrafo no es el primer hijo</h3>
+      <p>Párrafo Siete</p>
+    </div>
+  </body>
+</html>

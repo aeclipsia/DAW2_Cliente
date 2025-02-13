@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo 2</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#b1").click(function () {
+          $("p,div:hidden").show(500);
+        });
+        $("#b2").click(function () {
+          $("p:hidden").show(500);
+        });
+        $("#b3").click(function () {
+          $("p:visible").hide(500);
+        });
+        $("#b4").click(function () {
+          $("div").each(function () {
+            alert($(this).html() + " " + $(this).css("visibility"));
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Párrafo Uno</p>
+    <p>Párrafo Dos</p>
+    <p style="display: none">Parrafo Tres display:none.</p>
+    <div style="display: none">Div display:none</div>
+    <div style="visibility: hidden">Div visibility:hidden</div>
+    <input type="button" value="Mostrar Todos" id="b1" />
+    <input type="button" value="Mostrar Párrafos ocultos" id="b2" />
+    <input type="button" value="Oculta párrafos" id="b3" />
+    <input type="button" value="Mostrar contenido div" id="b4" />
+  </body>
+</html>

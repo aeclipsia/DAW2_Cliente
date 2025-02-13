@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style type='text/css'>
+		
+	body{
+		font-family: Georgia, "Times New Roman", Times, serif;
+	}
+	#div{
+	width:400px;
+	height:400px;
+	margin-left:20px;
+	border: 2px black solid;
+	padding: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	background-color:99ccff;
+	}
+		
+		h1{
+			text-align:center;
+			font-size:20pt;
+		}
+		
+		table{
+			background-color: #EFF2FB;
+			text-align:center;
+			width:250px;
+			border: 1px solid #D0A9F5;
+			font-family: 'Cherry Swash', cursive;
+		}
+		
+		input{
+			text-align:center;
+		}
+		td{
+			border: 1px solid #D0A9F5;
+		}
+
+		</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"> </script>
+<script type="text/javascript">
+function aleatorio (min,max){
+ return Math.floor(Math.random()*(max - min +1)+min);
+}
+</script>
+</head>
+<body>
+<div id="div">
+<br><br>
+TIENES QUE SUMAR <input type="text" id="num"  size=6 value=0 disabled>
+<br><br>Y LLEVAS SUMADO <input type="text" id="suma" size=6 value=0 disabled>
+<br><br>
+<table>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</div>
+</body>
+
+</html>

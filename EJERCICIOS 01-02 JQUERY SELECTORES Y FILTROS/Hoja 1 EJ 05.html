@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HOJA 1 Ejercicio 5</title>
+    <style type="text/css">
+      table {
+        background-color: white;
+        text-align: center;
+      }
+      .Sombra {
+        color: white;
+        text-shadow: 2px 2px 4px #000000;
+      }
+      p span {
+        letter-spacing: 0.2em;
+      }
+      td span {
+        color: rgb(0, 0, 200);
+      }
+      td {
+        font-weight: bold;
+        font-style: italic;
+      }
+      #nota {
+        font-family: Arial;
+      }
+      h1:first-letter {
+        font-size: 3em;
+      }
+      h1 {
+        text-indent: 30px;
+      }
+      h5 {
+        white-space: pre;
+        text-align: right;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("h1").mouseover(function () {
+          $("h1:contains(título)").css({ color: "red" });
+        });
+        $("h1").mouseleave(function () {
+          $("h1:contains(título)").css({ color: "black" });
+        });
+        $("#boton1").click(function () {
+          $("p").hide();
+        });
+        $("#boton2").click(function () {
+          $("p").show();
+        });
+        $("#boton3").click(function () {
+          $("p:first").hide();
+        });
+        $("#boton4").click(function () {
+          $("p:last").hide();
+        });
+        $("p:has(span)").css({ border: "1px solid red", color: "green" });
+      });
+    </script>
+  </head>
+  <body>
+    <h1 class="Sombra">Esto es un título h1 con una clase sombra</h1>
+    <p>
+      Esto es un parrafo
+      <span
+        >y este texto es un span dentro del parrafo con 0.2em de separación
+        entre letras</span
+      >
+    </p>
+    <table>
+      <tr>
+        <td>Esta es la primera celda de la tabla</td>
+        <td>Esta es la segunda</td>
+      </tr>
+      <tr>
+        <td><span>Este texto es azul</span></td>
+        <td>El texto de la tabla es grueso</td>
+      </tr>
+    </table>
+    <p id="nota">Parrafo usando fuente especial</p>
+    <p class="Sombra">Este parrafo utiliza también la clase sombra</p>
+    <h1>
+      Todos los títulos h1 tienen la primera letra más grande y están identados
+      a la derecha 30px
+    </h1>
+    <h1>
+      Este otro conserva los blancos y los saltos de línea y está alineado a la
+      derecha
+    </h1>
+    <br />
+    <input type="button" id="boton1" value="OCULTA TODOS LOS PÁRRAFOS" />
+    <input type="button" id="boton2" value="MUESTRA TODOS LOS PÁRRAFOS" />
+    <br />
+    <input type="button" id="boton3" value="OCULTA PRIMER PÁRRAFO" />
+    <input type="button" id="boton4" value="OCULTA ÚLTIMO PÁRRAFO" />
+  </body>
+</html>

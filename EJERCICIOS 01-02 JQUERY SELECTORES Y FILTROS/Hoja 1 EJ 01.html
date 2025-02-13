@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HOJA 1 Ejercicio 1</title>
+    <style type="text/css">
+      table,
+      tr,
+      td {
+        border: 1px black double;
+        text-align: center;
+      }
+      table {
+        height: 100px;
+        width: 500px;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("td").click(function () {
+          $(this).css({ backgroundColor: "red" });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+        <td>12</td>
+      </tr>
+    </table>
+  </body>
+</html>

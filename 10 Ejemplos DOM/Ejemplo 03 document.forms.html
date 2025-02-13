@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DOM</title>
+        <link rel="stylesheet" href="main.css">
+<script>
+function mostrar(){
+for (i=0;i<document.forms.length;i++){
+	console.log (document.forms[i].name+' '+document.forms[i].elements);
+	for (j=0;j<document.forms[i].elements.length;j++)
+		console.log (document.forms[i].elements[j].name+' '+document.forms[i].elements[j].value);
+	}
+console.log (document.forms["form1"]["campo2"].value);
+}
+function limpiar(){
+document.forms[0].reset();
+}
+</script>
+</head>
+<body onload="mostrar()">
+<form name="form1">
+		Un campo <input type="text" name="campo1" value="20">
+		<br><br>
+		Otro campo <input type="text" name="campo2" value="40">
+		<br><br>
+		Y otro más<input type="text" name="campo3" value="50">
+		<br><br>
+</form>
+<form name="form2">
+		<input type="button" value="limpiar" onclick="limpiar()">
+		</form>
+<form name="form3">
+</form>
+</body>
+</html>

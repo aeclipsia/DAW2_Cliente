@@ -1,0 +1,32 @@
+[
+{
+"nombre": "Jose Luis",
+"apellido": "Serrano",
+"departamento": "MARKETING",
+"salario": "1800"
+},
+{
+"nombre": "Ana",
+"apellido": "Lozano",
+"departamento": "CONTABILIDAD",
+"salario": "2100"
+},
+{
+"nombre": "Juan Enrique",
+"apellido": "Villalobos",
+"departamento": "MARKETING",
+"salario": "1900"
+},
+{
+"nombre": "Marta",
+"apellido": "del Pozo",
+"departamento": "MARKETING",
+"salario": "1800"
+},
+{
+"nombre": "Hernesto",
+"apellido": "Cerezo",
+"departamento": "CONTABILIDAD",
+"salario": "1600"
+}
+]

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/ xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio 2</title>
+    <script type="text/javascript">
+      function fetchXML() {
+        fetch("fotos.xml")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("No se ha podido obtener el archivo fotos.xml");
+            }
+            return response.text();
+          })
+          .then((data) => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data, "text/xml");
+            imagen = xmlDoc.getElementsByTagName("IMAGEN");
+
+            select = document.getElementById("sel");
+
+            Array.from(imagen).forEach((element, index) => {
+              op = document.createElement("option");
+              op.value = index + 1;
+              op.innerHTML = element.childNodes[0].nodeValue;
+              select.appendChild(op);
+            });
+          });
+      }
+    </script>
+  </head>
+  <body onload="fetchXML()">
+    <div id="titulo"><h1>BUSCAR FOTOS</h1></div>
+    <select id="sel">
+      <option value="0">MIS FOTOS</option>
+    </select>
+    <div id="demo"></div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>jQuery</title>
+ 
+		<script src="jquery-3.7.1.min.js"> </script>
+		<script>
+			$(document).ready(function(){
+				$('#b1').click(function(){
+					$('#demo').load('respuesta.html #jquery',gestionarRespuesta);
+					});
+				$('#b2').click(function(){
+					$('#demo').load('respuesta.html #ajax',gestionarRespuesta);
+					});
+				$('#b3').click(function(){
+					$('#demo').load('respuesta.html #otro',gestionarRespuesta);
+					});
+				$('#b4').click(function(){
+					$('#demo').load('noexisto.html #otro',gestionarRespuesta);
+					});
+			});
+			function gestionarRespuesta(textoRespuesta,textoEstado,XHR){
+				$('#info').html(textoEstado+' '+XHR.readyState);
+				if(textoEstado != 'success' && textoEstado != 'notmodified'){
+					$('#info').html($('#info').html()+'<br>Se ha producido un <strong>error</strong>')
+				}	
+			}
+
+		</script>
+	</head>
+	<body>
+		<input type="button" id="b1" value="jQuery">
+		<input type="button" id="b2" value="Ajax">
+		<input type="button" id="b3" value="Otro">
+		<input type="button" id="b4" value="No existo">
+		<div id="info"></div>
+		<hr>
+		<div id='demo'></div>
+ 
+	</body>
+</html>

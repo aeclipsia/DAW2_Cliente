@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery</title>
+    <style>
+      div {
+        border-style: inset;
+        border-radius: 15px;
+        border: solid 1px #c3c3c3;
+        background: #e5eecc;
+        text-align: center;
+        color: #5858fa;
+        padding: 5px;
+      }
+      #significado {
+        display: none;
+        padding: 50px;
+      }
+    </style>
+    <script src="..\jquery-3.7.1.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#termino").click(desplegarSignificado);
+      });
+      function desplegarSignificado() {
+        $("#significado").slideToggle(2000);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="termino">DAW</div>
+    <div id="significado">Desarrollo de Aplicaciones Web.</div>
+
+    <p>
+      Haga clic sobre el t&eacute;rmino para desplegar su definici&oacute;n.
+    </p>
+    <p>
+      La funci&oacute;n slideToggle muestra u oculta un elemento con efecto de
+      deslizamiento
+    </p>
+    <p></p>
+  </body>
+</html>

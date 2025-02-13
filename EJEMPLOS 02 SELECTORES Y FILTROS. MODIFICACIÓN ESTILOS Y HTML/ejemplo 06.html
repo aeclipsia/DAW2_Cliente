@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejemplo 06</title>
+    <script src="..\jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        alert($("#campo1").val());
+        $("#campo1").val(16);
+        $("#campo2").change(function () {
+          $(this).val($(this).val() * 2);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    Campo 1 <input type="text" id="campo1" value="8" /> <br /><br />
+    Campo 2 <input type="text" id="campo2" value="2" />
+  </body>
+</html>

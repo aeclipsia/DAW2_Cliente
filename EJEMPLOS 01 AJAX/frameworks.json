@@ -1,0 +1,14 @@
+[
+{
+"framework": "Angular",
+"url": "https://angular.io"
+},
+{
+"framework": "Vue",
+"url": "https://vuejs.org/"
+},
+{
+"framework": "React",
+"url": "https://es.react.dev/"
+}
+]
