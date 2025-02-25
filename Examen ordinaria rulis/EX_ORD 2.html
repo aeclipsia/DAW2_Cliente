@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EJERCICIO ORDINARIA 2</title>
+
+    <style>
+      .clasediv {
+        position: relative;
+        float: left;
+        width: 120px;
+        height: 250px;
+        margin-left: 50px;
+        margin-top: 50px;
+        color: #515a5a;
+        text-align: center;
+      }
+      .clasemas {
+        position: relative;
+        float: left;
+        width: 340px;
+        margin-left: 50px;
+        margin-top: 100px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        border: 1px solid #000000;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        padding: 10px;
+        background-color: #eaeded;
+      }
+      p,
+      span {
+        font-weight: bold;
+        color: #515a5a;
+      }
+      .biografia {
+        display: none;
+        font-size: 12px;
+        color: #333;
+        margin-top: 10px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $.ajax({
+          url: "heroes.json",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            $.each(data, function (index, hero) {
+              var heroDiv = $('<div class="clasediv"></div>');
+              var heroName = $("<h3></h3>").text(hero.nombre);
+              var heroImage = $("<img>")
+                .attr("src", hero.img)
+                .attr("alt", hero.nombre);
+              var heroHouse = $("<p></p>").text("Casa: " + hero.casa);
+              var heroBio = $('<div class="biografia"></div>').text(hero.bio);
+
+              heroDiv.append(heroName, heroImage, heroBio, heroHouse);
+              $("#info").append(heroDiv);
+
+              heroImage.mouseenter(function () {
+                $("#masinfo").text(heroBio.text());
+              });
+
+              heroImage.mouseleave(function () {
+                $("#masinfo").empty();
+              });
+
+              heroHouse.click(function () {
+                var houseName = hero.casa.toLowerCase();
+                var jsFile = houseName + ".js";
+
+                $("#masinfo").text("Cargando " + jsFile + "...");
+
+                $.ajax({
+                  url: jsFile,
+                  type: "GET",
+                  dataType: "script",
+                  success: function () {
+                    if (houseName === "dc") {
+                      $("#masinfo").html(
+                        "<div id='DC' ><span>DC Comics</span> es una editorial de cómics estadounidense. Forma parte de DC Entertainment, ​ una de las empresas que conforman Warner Bros. Entertainment, la cual a su vez es propiedad de WarnerMedia.<br><span>Fundador:</span> Malcolm Wheeler-Nicholson<br><span>Fundación:</span> 1934, Estados Unidos<br><span>Propietario:</span> WarnerMedia<br><span>Oficinas centrales:</span> Burbank, California, Estados Unidos<br><span>Presidente:</span> Jim Lee<br><span>Sellos editoriales de apoyo:</span> Vertigo; Revista MAD; Young Animal</div>"
+                      );
+                    } else if (houseName === "marvel") {
+                      $("#masinfo").html(
+                        "<div id='Marvel' ><span>Marvel Comics</span> es una editorial de cómics estadounidense. Es una de las más grandes del mundo, y tiene en su haber a los superhéroes más conocidos y populares.<br><span>Fundador:</span> Martin Goodman<br><span>Fundación:</span> 1939, Estados Unidos<br><span>Propietario:</span> The Walt Disney Company<br><span>Oficinas centrales:</span> Nueva York, Estados Unidos<br><span>Presidente:</span> Kevin Feige<br><span>Sellos editoriales de apoyo:</span> Marvel Press; Marvel Knights</div>"
+                      );
+                    }
+                  },
+                  error: function (jqXHR, textStatus, errorThrown) {
+                    $("#masinfo").text(
+                      "Error al cargar " +
+                        jsFile +
+                        ": " +
+                        textStatus +
+                        " - " +
+                        errorThrown
+                    );
+                  },
+                });
+              });
+            });
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert(
+              "Error al cargar el archivo heroes.json: " +
+                textStatus +
+                " - " +
+                errorThrown
+            );
+          },
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="info"></div>
+
+    <div class="clasemas">
+      Saber más...
+      <div id="masinfo"></div>
+    </div>
+  </body>
+</html>

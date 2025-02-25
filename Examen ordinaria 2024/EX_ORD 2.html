@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/ xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EJERCICIO ORDINARIA 2</title>
+
+    <style>
+      .clasediv {
+        position: relative;
+        float: left;
+        width: 120px;
+        height: 160px;
+        margin-left: 50px;
+        margin-top: 50px;
+        color: #515a5a;
+        text-align: center;
+      }
+      .clasemas {
+        position: relative;
+        float: left;
+        width: 340px;
+        margin-left: 50px;
+        margin-top: 100px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        border: 1px solid #000000;
+        -moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+        padding: 10px;
+        background-color: #eaeded;
+      }
+      p,
+      span {
+        font-weight: bold;
+        color: #515a5a;
+      }
+    </style>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $.getJSON("heroes.json", function (datos) {
+          datos.forEach((element) => {
+            let heroDiv = $("<div class='clasediv'>")
+              .data("bio", element.bio)
+              .append(
+                $("<h4>").text(element.nombre),
+                $("<img>")
+                  .attr("src", element.img)
+                  .attr("width", 100)
+                  .attr("height", 100),
+                $("<p class='casa'>").text(element.casa)
+              );
+
+            $("#info").append(heroDiv);
+          });
+
+          $("#info")
+            .on("mouseenter", ".clasediv", function () {
+              $("#masinfo").html($(this).data("bio"));
+            })
+            .on("mouseleave", ".clasediv", function () {
+              $("#masinfo").empty(); // Vacía el contenido de #masinfo al salir
+            });
+        });
+
+        $("#info").on("click", ".casa", function () {
+          let casa = $(this).text().trim();
+          $("#masinfo").text(`Cargando información de ${casa}...`);
+
+          $.getScript(`${casa}.js`).fail(() => {
+            $("#masinfo").html(
+              `<p style="color:red;">Error: No se pudo cargar la información de ${casa}.</p>`
+            );
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="info"></div>
+    <div class="clasemas">
+      Saber mas...
+      <div id="masinfo"></div>
+    </div>
+  </body>
+</html>
